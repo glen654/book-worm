@@ -31,4 +31,9 @@ public class UserRegisterController {
     void btnSIgnUpAction(ActionEvent event) {
 
     }
+
+    @FXML
+    void btnHomeOnAction(ActionEvent event) {
+
+    }
 }

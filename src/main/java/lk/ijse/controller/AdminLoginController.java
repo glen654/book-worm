@@ -30,4 +30,9 @@ public class AdminLoginController {
     void signUpChangeOnAction(ActionEvent event) {
 
     }
+
+    @FXML
+    void btnHomeOnAction(ActionEvent event) {
+
+    }
 }
