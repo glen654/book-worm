@@ -1,23 +1,14 @@
-package lk.ijse.entity;
+package lk.ijse.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Admin")
-public class Admin {
-    @Id
-    @Column(name = "user_name")
+public class AdminDto {
     private String userName;
-    @Column(name = "password")
     private String password;
-    @Column(name = "confirm_password")
     private String confirmPassword;
 
-    public Admin() {
+    public AdminDto() {
     }
 
-
-    public Admin(String userName, String password, String confirmPassword) {
+    public AdminDto(String userName, String password, String confirmPassword) {
         this.userName = userName;
         this.password = password;
         this.confirmPassword = confirmPassword;
@@ -49,7 +40,7 @@ public class Admin {
 
     @Override
     public String toString() {
-        return "Admin{" +
+        return "AdminDto{" +
                 "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
