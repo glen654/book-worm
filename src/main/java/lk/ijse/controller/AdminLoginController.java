@@ -8,10 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.bo.AdminBo;
+import lk.ijse.bo.custom.AdminBo;
 import lk.ijse.bo.BoFactory;
 import lk.ijse.dto.AdminDto;
 

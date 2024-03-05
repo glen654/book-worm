@@ -1,16 +1,16 @@
-package lk.ijse.dto.tm;
+package lk.ijse.dto;
 
-public class BookTm {
+public class BookDto {
     private String bId;
     private String title;
     private String author;
     private String genre;
     private String status;
 
-    public BookTm() {
+    public BookDto() {
     }
 
-    public BookTm(String bId, String title, String author, String genre, String status) {
+    public BookDto(String bId, String title, String author, String genre, String status) {
         this.bId = bId;
         this.title = title;
         this.author = author;
@@ -60,7 +60,7 @@ public class BookTm {
 
     @Override
     public String toString() {
-        return "BookTm{" +
+        return "BookDto{" +
                 "bId='" + bId + '\'' +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +

@@ -1,5 +1,8 @@
 package lk.ijse.bo;
 
+import lk.ijse.bo.impl.AdminBoImpl;
+import lk.ijse.bo.impl.BookBoImpl;
+
 public class BoFactory {
     private static BoFactory boFactory;
 
@@ -12,13 +15,15 @@ public class BoFactory {
     }
 
     public enum BoTypes{
-        ADMIN
+        ADMIN,BOOK
     }
 
     public SuperBo getBo(BoTypes types){
         switch (types){
             case ADMIN:
                 return new AdminBoImpl();
+            case BOOK:
+                return new BookBoImpl();
             default:
                 return null;
         }

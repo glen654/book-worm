@@ -1,16 +1,25 @@
-package lk.ijse.dto.tm;
+package lk.ijse.entity;
 
-public class BookTm {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity(name = "books")
+public class Book {
+    @Id
+    @GeneratedValue(generator = "Book-Id-Generator")
+    @GenericGenerator(name = "Book-Id-Generator", strategy = "lk.ijse.util.BookIdGenerator")
     private String bId;
     private String title;
     private String author;
     private String genre;
     private String status;
 
-    public BookTm() {
+    public Book() {
     }
 
-    public BookTm(String bId, String title, String author, String genre, String status) {
+    public Book(String bId, String title, String author, String genre, String status) {
         this.bId = bId;
         this.title = title;
         this.author = author;
@@ -60,7 +69,7 @@ public class BookTm {
 
     @Override
     public String toString() {
-        return "BookTm{" +
+        return "Book{" +
                 "bId='" + bId + '\'' +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
