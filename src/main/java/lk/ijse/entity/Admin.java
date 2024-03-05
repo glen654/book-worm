@@ -1,26 +1,34 @@
 package lk.ijse.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
-@Entity
-@Table(name = "Admin")
+@Entity(name = "admin")
 public class Admin {
     @Id
-    @Column(name = "user_name")
+    @GeneratedValue(generator = "Admin-Id-Generator")
+    @GenericGenerator(name = "Admin-Id-Generator", strategy = "lk.ijse.util.AdminIdGenerator")
+    private String adminId;
     private String userName;
-    @Column(name = "password")
     private String password;
-    @Column(name = "confirm_password")
     private String confirmPassword;
 
     public Admin() {
     }
 
-
-    public Admin(String userName, String password, String confirmPassword) {
+    public Admin(String adminId, String userName, String password, String confirmPassword) {
+        this.adminId = adminId;
         this.userName = userName;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
     }
 
     public String getUserName() {
@@ -50,7 +58,8 @@ public class Admin {
     @Override
     public String toString() {
         return "Admin{" +
-                "userName='" + userName + '\'' +
+                "adminId='" + adminId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';

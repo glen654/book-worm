@@ -1,6 +1,7 @@
 package lk.ijse.dto;
 
 public class AdminDto {
+    private String adminId;
     private String userName;
     private String password;
     private String confirmPassword;
@@ -8,10 +9,25 @@ public class AdminDto {
     public AdminDto() {
     }
 
+    public AdminDto(String adminId, String userName, String password, String confirmPassword) {
+        this.adminId = adminId;
+        this.userName = userName;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
     public AdminDto(String userName, String password, String confirmPassword) {
         this.userName = userName;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
     }
 
     public String getUserName() {
@@ -41,7 +57,8 @@ public class AdminDto {
     @Override
     public String toString() {
         return "AdminDto{" +
-                "userName='" + userName + '\'' +
+                "adminId='" + adminId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';

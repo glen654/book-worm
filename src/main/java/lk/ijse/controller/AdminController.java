@@ -61,11 +61,9 @@ public class AdminController {
 
                 if(isSaved){
                     clearFields();
-                    openWindow();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Your have created an account successfully").show();
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -124,5 +122,10 @@ public class AdminController {
         }
 
         return true;
+    }
+
+    @FXML
+    void btnShowPassword(ActionEvent event) {
+
     }
 }

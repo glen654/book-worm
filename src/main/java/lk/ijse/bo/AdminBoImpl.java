@@ -12,6 +12,6 @@ public class AdminBoImpl implements AdminBo{
     AdminDao adminDao = (AdminDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.ADMIN);
     @Override
     public boolean saveAdmin(AdminDto dto) throws SQLException {
-        return adminDao.save(new Admin(dto.getUserName(), dto.getPassword(), dto.getConfirmPassword()));
+        return adminDao.save(new Admin(dto.getAdminId(), dto.getUserName(), dto.getPassword(), dto.getConfirmPassword()));
     }
 }
