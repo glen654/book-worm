@@ -18,6 +18,13 @@ public class BookDto {
         this.status = status;
     }
 
+    public BookDto(String title, String author, String genre, String status) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.status = status;
+    }
+
     public String getbId() {
         return bId;
     }
