@@ -15,8 +15,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BookController">
+<AnchorPane fx:id="rootNode" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BookController">
    <children>
       <AnchorPane layoutX="8.0" layoutY="12.0" prefHeight="677.0" prefWidth="223.0" style="-fx-background-color: #353b48; -fx-background-radius: 15px;">
          <effect>
@@ -28,7 +27,7 @@
                   <Image url="@../assets/vecteezy_bookworm-vector_266909-removebg-preview.png" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="27.0" layoutY="157.0" onAction="#btnBooksOnAction" prefHeight="48.0" prefWidth="156.0" text="Books" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="34.0" layoutY="205.0" onAction="#btnBooksOnAction" prefHeight="48.0" prefWidth="156.0" text="Books" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Mono Bold" size="18.0" />
                </font>
@@ -39,12 +38,12 @@
                   <Bloom />
                </effect>
             </JFXButton>
-            <ImageView layoutX="46.0" layoutY="166.0">
+            <ImageView layoutX="38.0" layoutY="214.0">
                <image>
                   <Image url="@../assets/icons8-books-30.png" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="27.0" layoutY="237.0" onAction="#btnBranchesOnAction" prefHeight="48.0" prefWidth="156.0" text="   Branches" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="27.0" layoutY="268.0" onAction="#btnBranchesOnAction" prefHeight="48.0" prefWidth="156.0" text="   Branches" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Mono Bold" size="18.0" />
                </font>
@@ -55,12 +54,12 @@
                   <Bloom />
                </effect>
             </JFXButton>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="46.0" layoutY="246.0">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="39.0" layoutY="277.0">
                <image>
                   <Image url="@../assets/icons8-online-store-50.png" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="34.0" layoutY="315.0" onAction="#btnUsersOnAction" prefHeight="48.0" prefWidth="156.0" text="Users" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="34.0" layoutY="339.0" onAction="#btnUsersOnAction" prefHeight="48.0" prefWidth="156.0" text="Users" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Mono Bold" size="18.0" />
                </font>
@@ -71,7 +70,7 @@
                   <Bloom />
                </effect>
             </JFXButton>
-            <ImageView layoutX="53.0" layoutY="324.0">
+            <ImageView layoutX="39.0" layoutY="348.0">
                <image>
                   <Image url="@../assets/icons8-users-30.png" />
                </image>
@@ -92,6 +91,22 @@
                   <Image url="@../assets/icons8-logout-24.png" />
                </image>
             </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="34.0" layoutY="139.0" onAction="#btnDashboardOnAction" prefHeight="48.0" prefWidth="156.0" text="  Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXButton>
+            <ImageView fitHeight="38.0" fitWidth="37.0" layoutX="35.0" layoutY="144.0">
+               <image>
+                  <Image url="@../assets/icons8-dashboard-48.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="root" layoutX="238.0" layoutY="17.0" prefHeight="668.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px;">
@@ -104,16 +119,6 @@
                   <Font name="Ubuntu Mono Bold" size="36.0" />
                </font>
             </Label>
-            <ImageView layoutX="531.0" layoutY="25.0">
-               <image>
-                  <Image url="@../assets/icons8-admin-48%20(1).png" />
-               </image>
-            </ImageView>
-            <ImageView layoutX="531.0" layoutY="61.0">
-               <image>
-                  <Image url="@../assets/icons8-dot-24.png" />
-               </image>
-            </ImageView>
             <Label fx:id="txtName" layoutX="579.0" layoutY="48.0" prefHeight="27.0" prefWidth="167.0">
                <font>
                   <Font name="Ubuntu Mono Bold" size="14.0" />
@@ -177,6 +182,16 @@
                <effect>
                   <DropShadow />
                </effect>
+            </ImageView>
+            <ImageView layoutX="531.0" layoutY="26.0">
+               <image>
+                  <Image url="@../assets/icons8-admin-48.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="531.0" layoutY="61.0">
+               <image>
+                  <Image url="@../assets/icons8-dot-24.png" />
+               </image>
             </ImageView>
          </children>
       </AnchorPane>
