@@ -31,6 +31,7 @@ public class AdminLoginController {
     @FXML
     private TextField txtUsername;
     AdminBo adminBo = (AdminBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.ADMIN);
+    MainAdminController mainAdminController =  new MainAdminController();
     @FXML
     void btnSignInOnAction(ActionEvent event) {
         String userName = txtUsername.getText();
@@ -80,7 +81,6 @@ public class AdminLoginController {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard.fxml"));
 
         Scene scene = new Scene(rootNode);
-
         Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.setTitle("Book Worm");
