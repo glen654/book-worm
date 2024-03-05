@@ -9,11 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.bo.BoFactory;
 import lk.ijse.bo.custom.BookBo;
 import lk.ijse.dto.BookDto;
+import lk.ijse.dto.tm.BookTm;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,22 +33,22 @@ public class BookController implements Initializable {
     private ComboBox<String> cmbStatus;
 
     @FXML
-    private TableColumn<?, ?> colAuthor;
+    private TableColumn<BookDto, String> colAuthor;
 
     @FXML
-    private TableColumn<?, ?> colGenre;
+    private TableColumn<BookDto, String> colGenre;
 
     @FXML
-    private TableColumn<?, ?> colStatus;
+    private TableColumn<BookDto, String> colStatus;
 
     @FXML
-    private TableColumn<?, ?> colTitle;
+    private TableColumn<BookDto, String> colTitle;
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private TableView<?> tableBooks;
+    private TableView<BookTm> tableBooks;
 
     @FXML
     private TextField txtAuthor;
@@ -98,6 +100,7 @@ public class BookController implements Initializable {
 
                 if(isSaved){
                     clearFields();
+                    loadAllBooks();
                     new Alert(Alert.AlertType.CONFIRMATION,"Book Saved Successfully").show();
                 }else{
                     new Alert(Alert.AlertType.ERROR,"Book Save Unsuccessfull").show();
@@ -203,5 +206,42 @@ public class BookController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadGenre();
         loadStatus();
+        tableListener();
+        loadAllBooks();
+        setCellValueFactory();
+    }
+
+    private void tableListener() {
+        tableBooks.getSelectionModel().selectedItemProperty().addListener((observable, oldValued, newValue) -> {
+            setData(newValue);
+        });
+    }
+
+    private void setData(Object newValue) {
+    }
+
+    private void loadAllBooks(){
+        ObservableList<BookTm> obList = FXCollections.observableArrayList();
+
+        List<BookDto> dtoList = bookBo.getAllBooks();
+
+        for(BookDto dto : dtoList){
+            obList.add(new BookTm(
+                    dto.getbId(),
+                    dto.getTitle(),
+                    dto.getAuthor(),
+                    dto.getGenre(),
+                    dto.getStatus()
+            ));
+        }
+        tableBooks.setItems(obList);
+        tableBooks.refresh();
+    }
+
+    private void setCellValueFactory(){
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 }

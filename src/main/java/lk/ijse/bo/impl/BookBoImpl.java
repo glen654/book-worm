@@ -7,6 +7,8 @@ import lk.ijse.dto.BookDto;
 import lk.ijse.entity.Book;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookBoImpl implements BookBo {
 
@@ -14,5 +16,15 @@ public class BookBoImpl implements BookBo {
     @Override
     public boolean saveBook(BookDto dto) throws SQLException {
         return bookDao.save(new Book(dto.getbId(), dto.getTitle(), dto.getAuthor(), dto.getGenre(), dto.getStatus()));
+    }
+
+    @Override
+    public List<BookDto> getAllBooks() {
+        List<Book> books = bookDao.getAll();
+        List<BookDto> bookDtos = new ArrayList<>();
+        for(Book book : books){
+            bookDtos.add(new BookDto(book.getbId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus()));
+        }
+        return bookDtos;
     }
 }

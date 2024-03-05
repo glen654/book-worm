@@ -5,7 +5,10 @@ import lk.ijse.dto.AdminDto;
 import lk.ijse.dto.BookDto;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface BookBo extends SuperBo {
     boolean saveBook(BookDto dto) throws SQLException;
+
+    List<BookDto> getAllBooks();
 }

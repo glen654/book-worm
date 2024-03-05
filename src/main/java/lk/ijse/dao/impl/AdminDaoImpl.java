@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class AdminDaoImpl implements AdminDao {
     @Override
@@ -18,6 +19,11 @@ public class AdminDaoImpl implements AdminDao {
         transaction.commit();
         session.close();
         return true;
+    }
+
+    @Override
+    public List<Admin> getAll() {
+        return null;
     }
 
     @Override
