@@ -22,6 +22,11 @@ public class AdminDto {
         this.confirmPassword = confirmPassword;
     }
 
+    public AdminDto(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
     public String getAdminId() {
         return adminId;
     }

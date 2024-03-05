@@ -1,6 +1,6 @@
 package lk.ijse.bo;
 
-import lk.ijse.dao.AdminDao;
+import lk.ijse.dao.custom.AdminDao;
 import lk.ijse.dao.DaoFactory;
 import lk.ijse.dto.AdminDto;
 import lk.ijse.entity.Admin;
@@ -14,4 +14,16 @@ public class AdminBoImpl implements AdminBo{
     public boolean saveAdmin(AdminDto dto) throws SQLException {
         return adminDao.save(new Admin(dto.getAdminId(), dto.getUserName(), dto.getPassword(), dto.getConfirmPassword()));
     }
+
+    @Override
+    public AdminDto adminSignIn(String username, String password) {
+        Admin admin = adminDao.signIn(username, password);
+        if(admin != null){
+            AdminDto adminDto = new AdminDto(admin.getUserName(),admin.getPassword());
+            return adminDto;
+        }else {
+            return null;
+        }
+    }
+
 }

@@ -75,15 +75,7 @@ public class AdminController {
         txtConfirmPassword.setText("");
     }
 
-    public void openWindow() throws IOException {
-        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard.fxml"));
 
-        Scene scene = new Scene(rootNode);
-
-        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Book Worm");
-    }
 
     @FXML
     void btnHomeOnAction(ActionEvent event) throws IOException {

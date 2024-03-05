@@ -1,5 +1,7 @@
 package lk.ijse.dao;
 
+import lk.ijse.dao.impl.AdminDaoImpl;
+
 public class DaoFactory {
     private static DaoFactory daoFactory;
 
