@@ -13,4 +13,6 @@ public interface BookBo extends SuperBo {
     List<BookDto> getAllBooks();
 
     BookDto existsBook(String title);
+
+    boolean updateBook(BookDto dto) throws SQLException;
 }

@@ -141,7 +141,28 @@ public class BookController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        if(validateBooks()){
+            String title = txtTitle.getText();
+            String author =  txtAuthor.getText();
+            String genre = cmbGenre.getValue();
+            String status = cmbStatus.getValue();
 
+            BookDto bookDto = new BookDto(title,author,genre,status);
+
+            try {
+                boolean isUpdate = bookBo.updateBook(bookDto);
+
+                if(isUpdate){
+                    clearFields();
+                    loadAllBooks();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Book Updated").show();
+                }else{
+                    new Alert(Alert.AlertType.ERROR,"Book Update Unsuccessfull").show();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @FXML

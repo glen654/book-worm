@@ -34,4 +34,9 @@ public class BookBoImpl implements BookBo {
         BookDto bookDto = new BookDto(book.getAuthor(), book.getGenre(), book.getStatus());
         return bookDto;
     }
+
+    @Override
+    public boolean updateBook(BookDto dto) throws SQLException {
+        return bookDao.update(new Book(dto.getbId(), dto.getTitle(), dto.getAuthor(), dto.getGenre(), dto.getStatus()));
+    }
 }
