@@ -64,9 +64,20 @@ public class BookDaoImpl implements BookDao {
         Transaction transaction = session.beginTransaction();
 
         try{
-            session.update(entity);
-            transaction.commit();
-            return true;
+            Query query = session.createQuery("update books set author = :author, genre = :genre,status = :status where title = :title");
+            query.setParameter("author",entity.getAuthor());
+            query.setParameter("genre",entity.getGenre());
+            query.setParameter("status",entity.getStatus());
+            query.setParameter("title",entity.getTitle());
+
+            int rowCount = query.executeUpdate();
+            if(rowCount > 0){
+                transaction.commit();
+                return true;
+            }else {
+                transaction.rollback();
+                return false;
+            }
         }catch (Exception e){
             e.printStackTrace();
             transaction.rollback();
