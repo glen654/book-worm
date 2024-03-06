@@ -3,6 +3,8 @@ package lk.ijse.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
+
 @Entity(name = "admin")
 public class Admin {
     @Id
@@ -12,6 +14,8 @@ public class Admin {
     private String userName;
     private String password;
     private String confirmPassword;
+    @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
+    private List<Branch> branches;
 
     public Admin() {
     }
