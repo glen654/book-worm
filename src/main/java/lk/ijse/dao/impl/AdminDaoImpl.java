@@ -3,6 +3,7 @@ package lk.ijse.dao.impl;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.AdminDao;
 import lk.ijse.entity.Admin;
+import lk.ijse.entity.Book;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -24,6 +25,16 @@ public class AdminDaoImpl implements AdminDao {
     @Override
     public List<Admin> getAll() {
         return null;
+    }
+
+    @Override
+    public Book exists(String title) {
+        return null;
+    }
+
+    @Override
+    public boolean update(Admin entity) throws SQLException {
+        return false;
     }
 
     @Override

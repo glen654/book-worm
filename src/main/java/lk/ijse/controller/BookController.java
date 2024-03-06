@@ -16,6 +16,7 @@ import lk.ijse.bo.BoFactory;
 import lk.ijse.bo.custom.BookBo;
 import lk.ijse.dto.BookDto;
 import lk.ijse.dto.tm.BookTm;
+import lk.ijse.entity.Book;
 
 import java.io.IOException;
 import java.net.URL;
@@ -113,6 +114,17 @@ public class BookController implements Initializable {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
+        String title = txtTitle.getText();
+
+        BookDto bookDto = bookBo.existsBook(title);
+
+        if(bookDto != null){
+            txtAuthor.setText(bookDto.getAuthor());
+            cmbGenre.setValue(bookDto.getGenre());
+            cmbStatus.setValue(bookDto.getStatus());
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Book Not Found").show();
+        }
 
     }
 

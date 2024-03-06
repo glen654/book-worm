@@ -27,4 +27,11 @@ public class BookBoImpl implements BookBo {
         }
         return bookDtos;
     }
+
+    @Override
+    public BookDto existsBook(String title) {
+        Book book = bookDao.exists(title);
+        BookDto bookDto = new BookDto(book.getAuthor(), book.getGenre(), book.getStatus());
+        return bookDto;
+    }
 }

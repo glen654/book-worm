@@ -25,6 +25,12 @@ public class BookDto {
         this.status = status;
     }
 
+    public BookDto(String author, String genre, String status) {
+        this.author = author;
+        this.genre = genre;
+        this.status = status;
+    }
+
     public String getbId() {
         return bId;
     }

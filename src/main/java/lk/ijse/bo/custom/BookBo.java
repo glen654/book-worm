@@ -11,4 +11,6 @@ public interface BookBo extends SuperBo {
     boolean saveBook(BookDto dto) throws SQLException;
 
     List<BookDto> getAllBooks();
+
+    BookDto existsBook(String title);
 }
