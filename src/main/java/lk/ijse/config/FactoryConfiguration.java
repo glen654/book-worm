@@ -2,6 +2,7 @@ package lk.ijse.config;
 
 import lk.ijse.entity.Admin;
 import lk.ijse.entity.Book;
+import lk.ijse.entity.Branch;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -27,7 +28,7 @@ public class FactoryConfiguration {
             throw new RuntimeException(e);
         }
 
-        Configuration configuration = (new Configuration()).addProperties(properties).addAnnotatedClass(Admin.class).addAnnotatedClass(Book.class);
+        Configuration configuration = (new Configuration()).addProperties(properties).addAnnotatedClass(Admin.class).addAnnotatedClass(Book.class).addAnnotatedClass(Branch.class);
         this.sessionFactory = configuration.buildSessionFactory();
     }
 
