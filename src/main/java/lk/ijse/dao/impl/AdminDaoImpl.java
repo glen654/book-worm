@@ -38,6 +38,11 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
+    public boolean delete(String title) throws SQLException {
+        return false;
+    }
+
+    @Override
     public Admin signIn(String username, String password) {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();

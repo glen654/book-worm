@@ -75,4 +75,30 @@ public class BookDaoImpl implements BookDao {
             session.close();
         }
     }
+
+    @Override
+    public boolean delete(String title) throws SQLException {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            Query query = session.createQuery("from books  where title = :title");
+            query.setParameter("title",title);
+            Book book = (Book) query.uniqueResult();
+
+            if(book != null){
+                session.delete(book);
+                transaction.commit();
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        }finally {
+            session.close();
+        }
+    }
 }

@@ -39,4 +39,9 @@ public class BookBoImpl implements BookBo {
     public boolean updateBook(BookDto dto) throws SQLException {
         return bookDao.update(new Book(dto.getbId(), dto.getTitle(), dto.getAuthor(), dto.getGenre(), dto.getStatus()));
     }
+
+    @Override
+    public boolean deleteBook(String title) throws SQLException {
+        return bookDao.delete(title);
+    }
 }

@@ -83,7 +83,21 @@ public class BookController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        String title = txtTitle.getText();
 
+        try {
+            boolean isDeleted = bookBo.deleteBook(title);
+
+            if(isDeleted){
+                clearFields();
+                loadAllBooks();
+                new Alert(Alert.AlertType.CONFIRMATION,"Book Deleted").show();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Book Deleting Unsuccessfull").show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
