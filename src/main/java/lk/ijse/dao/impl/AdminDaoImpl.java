@@ -24,7 +24,19 @@ public class AdminDaoImpl implements AdminDao {
 
     @Override
     public List<Admin> getAll() {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("from admin ");
+            return (List<Admin>) query.list();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+            return null;
+        }finally {
+            session.close();
+        }
     }
 
     @Override

@@ -3,15 +3,21 @@ package lk.ijse.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.BoFactory;
+import lk.ijse.bo.custom.AdminBo;
+import lk.ijse.bo.custom.BranchBo;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class BranchController {
+public class BranchController implements Initializable {
     @FXML
     private ComboBox<?> cmbAdmin;
 
@@ -53,7 +59,8 @@ public class BranchController {
 
     @FXML
     private Label txtName;
-
+    BranchBo branchBo = (BranchBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BRANCH);
+    AdminBo adminBo = (AdminBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.ADMIN);
     @FXML
     void btnBooksOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/books_form.fxml"));
@@ -75,7 +82,6 @@ public class BranchController {
 
     }
 
-    @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard.fxml"));
 
@@ -114,6 +120,10 @@ public class BranchController {
 
     @FXML
     void btnUsersOnAction(ActionEvent event) {
+
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 }

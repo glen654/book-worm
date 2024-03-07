@@ -7,6 +7,8 @@ import lk.ijse.dto.AdminDto;
 import lk.ijse.entity.Admin;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminBoImpl implements AdminBo {
 
@@ -25,6 +27,16 @@ public class AdminBoImpl implements AdminBo {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public List<AdminDto> getAllAdmin() {
+        List<Admin> admins = adminDao.getAll();
+        List<AdminDto> adminDtos = new ArrayList<>();
+        for(Admin admin : admins){
+            adminDtos.add(new AdminDto(admin.getAdminId(),admin.getUserName(), admin.getPassword(), admin.getConfirmPassword()));
+        }
+        return adminDtos;
     }
 
 }
