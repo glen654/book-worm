@@ -5,8 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import java.util.List;
-
 @Entity(name = "branches")
 public class Branch {
     @Id
@@ -27,6 +25,9 @@ public class Branch {
         this.bNumber = bNumber;
         this.status = status;
         this.admin = admin;
+    }
+
+    public Branch(String bId, String address, String bNumber, String status, String adminId) {
     }
 
     public String getbId() {

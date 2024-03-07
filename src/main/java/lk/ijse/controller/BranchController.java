@@ -15,9 +15,13 @@ import lk.ijse.bo.BoFactory;
 import lk.ijse.bo.custom.AdminBo;
 import lk.ijse.bo.custom.BranchBo;
 import lk.ijse.dto.AdminDto;
+import lk.ijse.dto.BranchDto;
+import lk.ijse.entity.Admin;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
@@ -87,6 +91,7 @@ public class BranchController implements Initializable {
 
     }
 
+    @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard.fxml"));
 
@@ -99,7 +104,25 @@ public class BranchController implements Initializable {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        if(validateBranch()){
+            String id = txtId.getText();
+            String address = txtAddress.getText();
+            String noBooks = txtBookNumber.getText();
+            String status = cmbStatus.getValue();
+            String adminId = cmbAdmin.getValue();
 
+            var dto = new BranchDto(id,address,noBooks,status,adminId);
+
+            try {
+                boolean isSaved = branchBo.saveBranch(dto);
+                if(isSaved){
+                    clearFields();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Branch Saved").show();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @FXML
@@ -130,6 +153,7 @@ public class BranchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadAllAdminId();
+        loadStatus();
     }
 
     private void loadAllAdminId(){
@@ -146,7 +170,7 @@ public class BranchController implements Initializable {
     public boolean validateBranch(){
         String id = txtId.getText();
 
-        boolean isIdValidated = Pattern.matches("[B-][0-9]{3,}", id);
+        boolean isIdValidated = Pattern.matches("B-[0-9]{3,}", id);
         if (!isIdValidated) {
             new Alert(Alert.AlertType.ERROR, "Invalid ID!").show();
             return false;
@@ -162,9 +186,9 @@ public class BranchController implements Initializable {
 
         String noBooks = txtBookNumber.getText();
 
-        boolean isNoBooksValidated = Pattern.matches("[0-9]", noBooks);
+        boolean isNoBooksValidated = Pattern.matches("\\d*", noBooks);
         if (!isNoBooksValidated) {
-            new Alert(Alert.AlertType.ERROR, "Invalid Genre!").show();
+            new Alert(Alert.AlertType.ERROR, "Invalid Book Number!").show();
             return false;
         }
 
@@ -178,12 +202,26 @@ public class BranchController implements Initializable {
 
         String adminId = cmbAdmin.getValue();
 
-        boolean isAdminIdValidated = Pattern.matches("[A-][0-9]{3,}", adminId);
+        boolean isAdminIdValidated = Pattern.matches("A-[0-9]{3,}", adminId);
         if (!isAdminIdValidated) {
             new Alert(Alert.AlertType.ERROR, "Invalid Admin ID!").show();
             return false;
         }
 
         return true;
+    }
+
+    private void loadStatus() {
+        List<String> status = Arrays.asList("Open", "Close");
+        ObservableList<String> statusList = FXCollections.observableArrayList(status);
+        cmbStatus.setItems(statusList);
+    }
+
+    private void clearFields() {
+        txtId.setText("");
+        txtAddress.setText("");
+        txtBookNumber.setText("");
+        cmbAdmin.setValue("");
+        cmbStatus.setValue("");
     }
 }

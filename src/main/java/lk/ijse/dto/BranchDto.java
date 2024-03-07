@@ -7,12 +7,12 @@ public class BranchDto {
     private String address;
     private String bNumber;
     private String status;
-    private Admin adminId;
+    private String adminId;
 
     public BranchDto() {
     }
 
-    public BranchDto(String bId, String address, String bNumber, String status, Admin adminId) {
+    public BranchDto(String bId, String address, String bNumber, String status, String adminId) {
         this.bId = bId;
         this.address = address;
         this.bNumber = bNumber;
@@ -52,11 +52,11 @@ public class BranchDto {
         this.status = status;
     }
 
-    public Admin getAdminId() {
+    public String getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(Admin adminId) {
+    public void setAdminId(String adminId) {
         this.adminId = adminId;
     }
 
@@ -67,7 +67,7 @@ public class BranchDto {
                 ", address='" + address + '\'' +
                 ", bNumber='" + bNumber + '\'' +
                 ", status='" + status + '\'' +
-                ", adminId=" + adminId +
+                ", adminId='" + adminId + '\'' +
                 '}';
     }
 }
