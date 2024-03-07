@@ -1,16 +1,18 @@
 package lk.ijse.dto;
 
+import lk.ijse.entity.Admin;
+
 public class BranchDto {
     private String bId;
     private String address;
     private int bNumber;
     private String status;
-    private String adminId;
+    private Admin adminId;
 
     public BranchDto() {
     }
 
-    public BranchDto(String bId, String address, int bNumber, String status, String adminId) {
+    public BranchDto(String bId, String address, int bNumber, String status, Admin adminId) {
         this.bId = bId;
         this.address = address;
         this.bNumber = bNumber;
@@ -50,11 +52,11 @@ public class BranchDto {
         this.status = status;
     }
 
-    public String getAdminId() {
+    public Admin getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(String adminId) {
+    public void setAdminId(Admin adminId) {
         this.adminId = adminId;
     }
 
@@ -65,7 +67,7 @@ public class BranchDto {
                 ", address='" + address + '\'' +
                 ", bNumber=" + bNumber +
                 ", status='" + status + '\'' +
-                ", adminId='" + adminId + '\'' +
+                ", adminId=" + adminId +
                 '}';
     }
 }

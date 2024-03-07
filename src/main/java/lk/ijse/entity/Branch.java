@@ -29,6 +29,7 @@ public class Branch {
         this.admin = admin;
     }
 
+
     public String getbId() {
         return bId;
     }
