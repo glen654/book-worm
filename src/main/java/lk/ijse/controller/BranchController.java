@@ -9,13 +9,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.bo.BoFactory;
 import lk.ijse.bo.custom.AdminBo;
 import lk.ijse.bo.custom.BranchBo;
 import lk.ijse.dto.AdminDto;
+import lk.ijse.dto.BookDto;
 import lk.ijse.dto.BranchDto;
+import lk.ijse.dto.tm.BookTm;
+import lk.ijse.dto.tm.BranchTm;
 import lk.ijse.entity.Admin;
 
 import java.io.IOException;
@@ -34,19 +38,17 @@ public class BranchController implements Initializable {
     private ComboBox<String> cmbStatus;
 
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private TableColumn<BranchDto, String> colAddress;
 
     @FXML
-    private TableColumn<?, ?> colBooks;
+    private TableColumn<BranchDto, String> colBooks;
 
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<BranchDto, String> colId;
 
     @FXML
-    private TableColumn<?, ?> colStatus;
+    private TableColumn<BranchDto, String> colStatus;
 
-    @FXML
-    private TableColumn<?, ?> colAdminId;
 
     @FXML
     private AnchorPane root;
@@ -55,7 +57,7 @@ public class BranchController implements Initializable {
     private AnchorPane rootNode;
 
     @FXML
-    private TableView<?> tableBranch;
+    private TableView<BranchTm> tableBranch;
 
     @FXML
     private TextField txtAddress;
@@ -117,6 +119,7 @@ public class BranchController implements Initializable {
                 boolean isSaved = branchBo.saveBranch(dto);
                 if(isSaved){
                     clearFields();
+                    loadAllBranches();
                     new Alert(Alert.AlertType.CONFIRMATION,"Branch Saved").show();
                 }
             } catch (SQLException e) {
@@ -154,6 +157,9 @@ public class BranchController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadAllAdminId();
         loadStatus();
+        loadAllBranches();
+        setCellValueFactory();
+        tableListener();
     }
 
     private void loadAllAdminId(){
@@ -223,5 +229,39 @@ public class BranchController implements Initializable {
         txtBookNumber.setText("");
         cmbAdmin.setValue("");
         cmbStatus.setValue("");
+    }
+
+    private void tableListener() {
+        tableBranch.getSelectionModel().selectedItemProperty().addListener((observable, oldValued, newValue) -> {
+            setData(newValue);
+        });
+    }
+
+    private void setData(Object newValue) {
+    }
+
+    private void loadAllBranches(){
+        ObservableList<BranchTm> obList = FXCollections.observableArrayList();
+
+        List<BranchDto> dtoList = branchBo.getAllBranches();
+
+        for(BranchDto dto : dtoList){
+            obList.add(new BranchTm(
+                    dto.getbId(),
+                    dto.getAddress(),
+                    dto.getbNumber(),
+                    dto.getStatus(),
+                    dto.getAdminId()
+            ));
+        }
+        tableBranch.setItems(obList);
+        tableBranch.refresh();
+    }
+
+    private void setCellValueFactory(){
+        colId.setCellValueFactory(new PropertyValueFactory<>("bId"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colBooks.setCellValueFactory(new PropertyValueFactory<>("bNumber"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 }

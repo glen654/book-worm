@@ -6,6 +6,7 @@ import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -23,7 +24,19 @@ public class BranchDaoImpl implements BranchDao {
 
     @Override
     public List<Branch> getAll() {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("from branches ");
+            return (List<Branch>) query.list();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+            return null;
+        }finally {
+            session.close();
+        }
     }
 
     @Override

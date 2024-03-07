@@ -20,6 +20,13 @@ public class BranchDto {
         this.adminId = adminId;
     }
 
+    public BranchDto(String bId, String address, String bNumber, String status) {
+        this.bId = bId;
+        this.address = address;
+        this.bNumber = bNumber;
+        this.status = status;
+    }
+
     public String getbId() {
         return bId;
     }
