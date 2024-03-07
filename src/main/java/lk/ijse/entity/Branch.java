@@ -12,7 +12,7 @@ public class Branch {
     @Id
     private String bId;
     private String address;
-    private int bNumber;
+    private String bNumber;
     private String status;
     @ManyToOne
     @JoinColumn(name = "admin_id")
@@ -21,14 +21,13 @@ public class Branch {
     public Branch() {
     }
 
-    public Branch(String bId, String address, int bNumber, String status, Admin admin) {
+    public Branch(String bId, String address, String bNumber, String status, Admin admin) {
         this.bId = bId;
         this.address = address;
         this.bNumber = bNumber;
         this.status = status;
         this.admin = admin;
     }
-
 
     public String getbId() {
         return bId;
@@ -46,11 +45,11 @@ public class Branch {
         this.address = address;
     }
 
-    public int getbNumber() {
+    public String getbNumber() {
         return bNumber;
     }
 
-    public void setbNumber(int bNumber) {
+    public void setbNumber(String bNumber) {
         this.bNumber = bNumber;
     }
 
@@ -75,7 +74,7 @@ public class Branch {
         return "Branch{" +
                 "bId='" + bId + '\'' +
                 ", address='" + address + '\'' +
-                ", bNumber=" + bNumber +
+                ", bNumber='" + bNumber + '\'' +
                 ", status='" + status + '\'' +
                 ", admin=" + admin +
                 '}';

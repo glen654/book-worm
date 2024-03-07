@@ -5,14 +5,14 @@ import lk.ijse.entity.Admin;
 public class BranchDto {
     private String bId;
     private String address;
-    private int bNumber;
+    private String bNumber;
     private String status;
     private Admin adminId;
 
     public BranchDto() {
     }
 
-    public BranchDto(String bId, String address, int bNumber, String status, Admin adminId) {
+    public BranchDto(String bId, String address, String bNumber, String status, Admin adminId) {
         this.bId = bId;
         this.address = address;
         this.bNumber = bNumber;
@@ -36,11 +36,11 @@ public class BranchDto {
         this.address = address;
     }
 
-    public int getbNumber() {
+    public String getbNumber() {
         return bNumber;
     }
 
-    public void setbNumber(int bNumber) {
+    public void setbNumber(String bNumber) {
         this.bNumber = bNumber;
     }
 
@@ -65,7 +65,7 @@ public class BranchDto {
         return "BranchDto{" +
                 "bId='" + bId + '\'' +
                 ", address='" + address + '\'' +
-                ", bNumber=" + bNumber +
+                ", bNumber='" + bNumber + '\'' +
                 ", status='" + status + '\'' +
                 ", adminId=" + adminId +
                 '}';
