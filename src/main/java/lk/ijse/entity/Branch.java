@@ -1,13 +1,13 @@
 package lk.ijse.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name = "branches")
 public class Branch {
     @Id
+    @GeneratedValue(generator = "Branch-Id-Generator")
+    @GenericGenerator(name = "Branch-Id-Generator", strategy = "lk.ijse.util.BranchIdGenerator")
     private String bId;
     private String address;
     private String bNumber;
@@ -28,6 +28,7 @@ public class Branch {
     }
 
     public Branch(String bId, String address, String bNumber, String status, String adminId) {
+
     }
 
     public String getbId() {
