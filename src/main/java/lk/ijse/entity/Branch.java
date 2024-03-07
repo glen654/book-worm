@@ -1,6 +1,8 @@
 package lk.ijse.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.dao.impl.AdminDaoImpl;
+import lk.ijse.dto.AdminDto;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name = "branches")
@@ -28,6 +30,10 @@ public class Branch {
     }
 
     public Branch(String bId, String address, String bNumber, String status, String adminId) {
+        this.bId = bId;
+        this.address = address;
+        this.bNumber = bNumber;
+        this.status = status;
 
     }
 

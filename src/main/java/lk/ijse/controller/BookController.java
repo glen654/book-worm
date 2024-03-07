@@ -72,7 +72,7 @@ public class BookController implements Initializable {
 
     @FXML
     void btnBranchesOnAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard.fxml"));
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/branch_form.fxml"));
 
         Scene scene = new Scene(root);
 
