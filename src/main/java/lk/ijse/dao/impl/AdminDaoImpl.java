@@ -55,6 +55,11 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
+    public String getCount() {
+        return null;
+    }
+
+    @Override
     public Admin signIn(String username, String password) {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();

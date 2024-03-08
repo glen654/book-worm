@@ -45,4 +45,9 @@ public class BranchBoImpl implements BranchBo {
     public boolean deleteBranch(String Id) throws SQLException {
         return branchDao.del(Id);
     }
+
+    @Override
+    public String getBranchCount() throws SQLException {
+        return branchDao.getCount();
+    }
 }

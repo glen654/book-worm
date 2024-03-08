@@ -131,7 +131,7 @@
                   </ImageView>
                   <Label fx:id="txtBookCount" layoutX="167.0" layoutY="108.0" prefHeight="30.0" prefWidth="48.0" textFill="WHITE">
                      <font>
-                        <Font name="Ubuntu Mono Bold" size="14.0" />
+                        <Font name="Ubuntu Mono Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -153,7 +153,7 @@
                   </ImageView>
                   <Label fx:id="txtBranchCount" layoutX="161.0" layoutY="109.0" prefHeight="30.0" prefWidth="48.0" textFill="WHITE">
                      <font>
-                        <Font name="Ubuntu Mono Bold" size="14.0" />
+                        <Font name="Ubuntu Mono Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -175,7 +175,7 @@
                   </ImageView>
                   <Label fx:id="txtUserCount" layoutX="161.0" layoutY="109.0" prefHeight="30.0" prefWidth="48.0" textFill="WHITE">
                      <font>
-                        <Font name="Ubuntu Mono Bold" size="14.0" />
+                        <Font name="Ubuntu Mono Bold" size="18.0" />
                      </font>
                   </Label>
                </children>

@@ -78,6 +78,24 @@ public class BranchDaoImpl implements BranchDao {
     }
 
     @Override
+    public String getCount() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Long count = (Long) session.createQuery("select count (*) from branches ").getSingleResult();
+            transaction.commit();
+            return String.valueOf(count);
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }finally {
+            session.close();
+        }
+        return null;
+    }
+
+    @Override
     public Branch search(String Id) {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();

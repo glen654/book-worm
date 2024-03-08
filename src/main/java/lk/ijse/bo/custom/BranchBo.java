@@ -14,4 +14,5 @@ public interface BranchBo extends SuperBo {
     BranchDto search(String Id);
     boolean updateBranch(BranchDto dto) throws SQLException;
     boolean deleteBranch(String Id) throws SQLException;
+    String getBranchCount() throws SQLException;
 }

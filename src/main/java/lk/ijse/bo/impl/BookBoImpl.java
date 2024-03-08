@@ -44,4 +44,9 @@ public class BookBoImpl implements BookBo {
     public boolean deleteBook(String title) throws SQLException {
         return bookDao.delete(title);
     }
+
+    @Override
+    public String getBookCount() throws SQLException {
+        return bookDao.getCount();
+    }
 }
