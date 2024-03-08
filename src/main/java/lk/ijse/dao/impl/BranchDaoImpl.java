@@ -46,11 +46,54 @@ public class BranchDaoImpl implements BranchDao {
 
     @Override
     public boolean update(Branch entity) throws SQLException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("update branches set bNumber = :bNumber, status = :status where bId = :bId");
+            query.setParameter("bNumber",entity.getbNumber());
+            query.setParameter("status",entity.getStatus());
+            query.setParameter("bId",entity.getbId());
+
+            int rowCount = query.executeUpdate();
+            if(rowCount > 0 ){
+                transaction.commit();
+                return true;
+            }else{
+                transaction.rollback();
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        }finally {
+            session.close();
+        }
     }
 
     @Override
     public boolean delete(String title) throws SQLException {
         return false;
+    }
+
+    @Override
+    public Branch search(String Id) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("select b from branches b where bId = :bId");
+            query.setParameter("bId",Id);
+            List<Branch> result = query.getResultList();
+            if(!result.isEmpty()){
+                return result.get(0);
+            }else{
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

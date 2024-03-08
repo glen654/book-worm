@@ -41,14 +41,16 @@ public class BranchController implements Initializable {
     private TableColumn<BranchDto, String> colAddress;
 
     @FXML
-    private TableColumn<BranchDto, String> colBooks;
+    private TableColumn<BranchDto, String> colbNumber;
 
     @FXML
-    private TableColumn<BranchDto, String> colId;
+    private TableColumn<BranchDto, String> colbId;
 
     @FXML
     private TableColumn<BranchDto, String> colStatus;
 
+    @FXML
+    private TableColumn<BranchDto, String> colAdminId;
 
     @FXML
     private AnchorPane root;
@@ -130,7 +132,17 @@ public class BranchController implements Initializable {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
+        String id = txtId.getText();
 
+        BranchDto dto = branchBo.search(id);
+
+        if(dto != null){
+            txtAddress.setText(dto.getAddress());
+            txtBookNumber.setText(dto.getbNumber());
+            cmbStatus.setValue(dto.getStatus());
+            cmbAdmin.setValue(dto.getAdminId());
+            cmbAdmin.setValue(dto.getAdminId());
+        }
     }
 
     @FXML
@@ -146,7 +158,28 @@ public class BranchController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        if(validateBranch()){
+            String id = txtId.getText();
+            String address = txtAddress.getText();
+            String bNumber = txtBookNumber.getText();
+            String status = cmbStatus.getValue();
+            String adminId = cmbAdmin.getValue();
 
+            BranchDto branchDto = new BranchDto(id,address,bNumber,status,adminId);
+
+            try {
+                boolean isUpdated = branchBo.updateBranch(branchDto);
+                if(isUpdated){
+                    clearFields();
+                    loadAllBranches();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Branch Updated").show();
+                }else{
+                    new Alert(Alert.AlertType.ERROR,"Branch Update Unsuccessfull").show();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @FXML
@@ -259,9 +292,10 @@ public class BranchController implements Initializable {
     }
 
     private void setCellValueFactory(){
-        colId.setCellValueFactory(new PropertyValueFactory<>("bId"));
+        colbId.setCellValueFactory(new PropertyValueFactory<>("bId"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        colBooks.setCellValueFactory(new PropertyValueFactory<>("bNumber"));
+        colbNumber.setCellValueFactory(new PropertyValueFactory<>("bNumber"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        colAdminId.setCellValueFactory(new PropertyValueFactory<>("adminId"));
     }
 }

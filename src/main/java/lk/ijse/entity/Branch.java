@@ -14,19 +14,9 @@ public class Branch {
     private String address;
     private String bNumber;
     private String status;
-    @ManyToOne
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    private String adminId;
 
     public Branch() {
-    }
-
-    public Branch(String bId, String address, String bNumber, String status, Admin admin) {
-        this.bId = bId;
-        this.address = address;
-        this.bNumber = bNumber;
-        this.status = status;
-        this.admin = admin;
     }
 
     public Branch(String bId, String address, String bNumber, String status, String adminId) {
@@ -34,7 +24,7 @@ public class Branch {
         this.address = address;
         this.bNumber = bNumber;
         this.status = status;
-
+        this.adminId = adminId;
     }
 
     public String getbId() {
@@ -69,12 +59,12 @@ public class Branch {
         this.status = status;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public String getAdminId() {
+        return adminId;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
     }
 
     @Override
@@ -84,7 +74,7 @@ public class Branch {
                 ", address='" + address + '\'' +
                 ", bNumber='" + bNumber + '\'' +
                 ", status='" + status + '\'' +
-                ", admin=" + admin +
+                ", adminId='" + adminId + '\'' +
                 '}';
     }
 }

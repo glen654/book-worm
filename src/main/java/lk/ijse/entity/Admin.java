@@ -14,8 +14,6 @@ public class Admin {
     private String userName;
     private String password;
     private String confirmPassword;
-    @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
-    private List<Branch> branches;
 
     public Admin() {
     }

@@ -161,10 +161,11 @@
             </JFXButton>
             <TableView fx:id="tableBranch" layoutX="28.0" layoutY="346.0" prefHeight="310.0" prefWidth="705.0" style="-fx-background-radius: 5px;">
                <columns>
-                  <TableColumn fx:id="colId" prefWidth="125.0" text="Branch ID" />
-                  <TableColumn fx:id="colAddress" prefWidth="236.0" text="Address" />
-                  <TableColumn fx:id="colBooks" prefWidth="191.0" text="No Of Books" />
-                  <TableColumn fx:id="colStatus" prefWidth="152.0" text="Status" />
+                  <TableColumn fx:id="colbId" prefWidth="125.0" text="Branch ID" />
+                  <TableColumn fx:id="colAddress" prefWidth="203.0" text="Address" />
+                  <TableColumn fx:id="colbNumber" prefWidth="135.0" text="No Of Books" />
+                  <TableColumn fx:id="colStatus" prefWidth="121.0" text="Status" />
+                  <TableColumn fx:id="colAdminId" prefWidth="120.0" text="Admin ID" />
                </columns>
                <effect>
                   <DropShadow>

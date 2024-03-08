@@ -24,8 +24,20 @@ public class BranchBoImpl implements BranchBo {
         List<Branch> branches = branchDao.getAll();
         List<BranchDto> branchDtos = new ArrayList<>();
         for(Branch branch : branches){
-            branchDtos.add(new BranchDto(branch.getbId(), branch.getAddress(), branch.getbNumber(), branch.getStatus()));
+            branchDtos.add(new BranchDto(branch.getbId(), branch.getAddress(), branch.getbNumber(), branch.getStatus(), branch.getAdminId()));
         }
         return branchDtos;
+    }
+
+    @Override
+    public BranchDto search(String Id) {
+        Branch branch = branchDao.search(Id);
+        BranchDto branchDto = new BranchDto(branch.getbId(), branch.getAddress(), branch.getbNumber(), branch.getStatus(), branch.getAdminId());
+        return branchDto;
+    }
+
+    @Override
+    public boolean updateBranch(BranchDto dto) throws SQLException {
+        return branchDao.update(new Branch(dto.getbId(), dto.getAddress(), dto.getbNumber(), dto.getStatus(), dto.getAdminId()));
     }
 }
