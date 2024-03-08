@@ -40,4 +40,9 @@ public class BranchBoImpl implements BranchBo {
     public boolean updateBranch(BranchDto dto) throws SQLException {
         return branchDao.update(new Branch(dto.getbId(), dto.getAddress(), dto.getbNumber(), dto.getStatus(), dto.getAdminId()));
     }
+
+    @Override
+    public boolean deleteBranch(String Id) throws SQLException {
+        return branchDao.del(Id);
+    }
 }

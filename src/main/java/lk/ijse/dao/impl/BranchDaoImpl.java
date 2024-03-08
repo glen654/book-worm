@@ -96,4 +96,30 @@ public class BranchDaoImpl implements BranchDao {
             return null;
         }
     }
+
+    @Override
+    public boolean del(String Id) throws SQLException {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("from branches where bId = :bId");
+            query.setParameter("bId",Id);
+            Branch branch = (Branch) query.uniqueResult();
+
+            if(branch != null){
+                session.delete(branch);
+                transaction.commit();
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        }finally {
+            session.close();
+        }
+    }
 }

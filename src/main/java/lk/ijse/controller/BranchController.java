@@ -92,7 +92,21 @@ public class BranchController implements Initializable {
 
     @FXML
     void btnCloseOnAction(ActionEvent event) {
+        String id = txtId.getText();
 
+        try {
+            boolean isDeleted = branchBo.deleteBranch(id);
+
+            if(isDeleted){
+                clearFields();
+                loadAllBranches();
+                new Alert(Alert.AlertType.CONFIRMATION,"Branch Deleted").show();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Branch Deleting Unsuccessfull").show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
