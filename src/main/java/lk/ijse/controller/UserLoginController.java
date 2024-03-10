@@ -43,6 +43,7 @@ public class UserLoginController {
             if(userDto != null){
                 try{
                     clearFields();
+                    openWindow();
                     new Alert(Alert.AlertType.CONFIRMATION,"Welcome User").show();
                 }catch (Exception e){
                     clearFields();
@@ -97,5 +98,14 @@ public class UserLoginController {
     private void clearFields() {
         txtUsername.setText("");
         txtPassword.setText("");
+    }
+
+    public void openWindow() throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 }

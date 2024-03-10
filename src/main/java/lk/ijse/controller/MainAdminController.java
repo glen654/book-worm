@@ -108,4 +108,8 @@ public class MainAdminController implements Initializable {
         }
         txtBookCount.setText(bookCount);
     }
+
+    public void setDisplayName(String displayName) {
+        txtName.setText(displayName);
+    }
 }
