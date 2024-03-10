@@ -3,6 +3,7 @@ package lk.ijse.dao;
 import lk.ijse.dao.impl.AdminDaoImpl;
 import lk.ijse.dao.impl.BookDaoImpl;
 import lk.ijse.dao.impl.BranchDaoImpl;
+import lk.ijse.dao.impl.UserDaoImpl;
 
 public class DaoFactory {
     private static DaoFactory daoFactory;
@@ -16,7 +17,7 @@ public class DaoFactory {
     }
 
     public enum DaoTypes{
-        ADMIN,BOOK,BRANCH
+        ADMIN,BOOK,BRANCH,USER
     }
 
     public SuperDao getDao(DaoTypes types){
@@ -27,6 +28,8 @@ public class DaoFactory {
                 return new BookDaoImpl();
             case BRANCH:
                 return new BranchDaoImpl();
+            case USER:
+                return new UserDaoImpl();
             default:
                 return null;
         }
