@@ -2,10 +2,12 @@ package lk.ijse.dao.impl;
 
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.UserDao;
+import lk.ijse.entity.Admin;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -43,6 +45,23 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public String getCount() {
+        return null;
+    }
+
+    @Override
+    public User signIn(String username, String password) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Query query = session.createQuery("select u from user u where userName = ?1 and password = ?2");
+            query.setParameter(1,username);
+            query.setParameter(2,password);
+            return (User) query.getSingleResult();
+        }catch (Exception e){
+            transaction.rollback();
+        }finally {
+            session.close();
+        }
         return null;
     }
 }

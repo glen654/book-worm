@@ -22,6 +22,11 @@ public class UserDto {
         this.confirmPassword = confirmPassword;
     }
 
+    public UserDto(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
     public String getuId() {
         return uId;
     }

@@ -15,6 +15,7 @@ import lk.ijse.bo.BoFactory;
 import lk.ijse.dto.AdminDto;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class AdminLoginController {
 
@@ -30,23 +31,25 @@ public class AdminLoginController {
     @FXML
     private TextField txtUsername;
     AdminBo adminBo = (AdminBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.ADMIN);
-    MainAdminController mainAdminController =  new MainAdminController();
     @FXML
     void btnSignInOnAction(ActionEvent event) {
-        String userName = txtUsername.getText();
-        String password = txtPassword.getText();
+        if(validateAdmin()){
+            String userName = txtUsername.getText();
+            String password = txtPassword.getText();
 
-        AdminDto adminDto = adminBo.adminSignIn(userName,password);
-         if(adminDto != null){
-             try {
-                 clearFields();
-                 new Alert(Alert.AlertType.CONFIRMATION,"Welcome Admin").show();
-                 openWindow();
-             } catch (IOException e) {
-                 clearFields();
-                 new Alert(Alert.AlertType.ERROR,"Username or Password Incorrect").show();
-             }
-         }
+            AdminDto adminDto = adminBo.adminSignIn(userName,password);
+            if(adminDto != null){
+                try {
+                    clearFields();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Welcome Admin").show();
+                    openWindow();
+                } catch (IOException e) {
+                    clearFields();
+                    new Alert(Alert.AlertType.ERROR,"Username or Password Incorrect").show();
+                }
+            }
+        }
+
     }
 
     @FXML
@@ -83,5 +86,25 @@ public class AdminLoginController {
         Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.setTitle("Book Worm");
+    }
+
+    public boolean validateAdmin(){
+        String userName = txtUsername.getText();
+
+        boolean isUserNameValidated = Pattern.matches("[A-Z][a-zA-Z\\s]+", userName);
+        if (!isUserNameValidated) {
+            new Alert(Alert.AlertType.ERROR, "Invalid UserName or Password!").show();
+            return false;
+        }
+
+        String password = txtPassword.getText();
+
+        boolean isPasswordValidated = Pattern.matches("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", password);
+        if (!isPasswordValidated) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Username or Password").show();
+            return false;
+        }
+
+        return true;
     }
 }
