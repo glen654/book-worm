@@ -16,6 +16,12 @@ public class UserDto {
         this.confirmPassword = confirmPassword;
     }
 
+    public UserDto(String userName, String password, String confirmPassword) {
+        this.userName = userName;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
     public String getuId() {
         return uId;
     }
