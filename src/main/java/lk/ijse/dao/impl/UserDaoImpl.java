@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Book exists(String title) {
+    public User exists(String title) {
         return null;
     }
 
@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Book search(String title) {
+    public User search(String title) {
         return null;
     }
 

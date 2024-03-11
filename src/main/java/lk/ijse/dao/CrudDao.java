@@ -9,9 +9,9 @@ import java.util.List;
 public interface CrudDao<T> extends SuperDao {
     boolean save(T entity) throws SQLException;
     List<T> getAll();
-    Book exists(String title);
+    T exists(String title);
     boolean update(T entity) throws SQLException;
     boolean delete(String title) throws SQLException;
     String getCount();
-    Book search(String title);
+    T search(String title);
 }

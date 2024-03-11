@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.dto.BookDto;
 
 public class SearchFormController {
     @FXML
@@ -30,5 +31,14 @@ public class SearchFormController {
     @FXML
     void btnBorrowOnAction(ActionEvent event) {
 
+    }
+
+    public void searchBookDetails(BookDto bookDto) {
+        lblName.setText(bookDto.getTitle());
+        lblBookId.setText(bookDto.getbId());
+        lblBookName.setText(bookDto.getTitle());
+        lblAuthor.setText(bookDto.getAuthor());
+        lblGenre.setText(bookDto.getGenre());
+        lblStatus.setText(bookDto.getStatus());
     }
 }

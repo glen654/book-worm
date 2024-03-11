@@ -40,7 +40,7 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
-    public Book exists(String title) {
+    public Admin exists(String title) {
         return null;
     }
 
@@ -60,7 +60,7 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
-    public Book search(String title) {
+    public Admin search(String title) {
         return null;
     }
 

@@ -40,7 +40,7 @@ public class BranchDaoImpl implements BranchDao {
     }
 
     @Override
-    public Book exists(String title) {
+    public Branch exists(String title) {
         return null;
     }
 
