@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,18 @@ public class ChangePasswordController {
 
     @FXML
     private TextField txtUsername;
+
+    @FXML
+    private TextField txtVisibleConfirmPassword;
+
+    @FXML
+    private TextField txtVisiblePassword;
+
+    @FXML
+    private JFXButton passwordVisiblebtn;
+
+    @FXML
+    private JFXButton visibleCloseBtn;
 
     UserBo userBo = (UserBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.USER);
 
@@ -132,6 +145,22 @@ public class ChangePasswordController {
         }
 
         return true;
+    }
+
+    @FXML
+    void btnPasswordVisible(ActionEvent event) {
+        txtVisiblePassword.setVisible(true);
+        passwordVisiblebtn.setVisible(false);
+        txtPassword.setVisible(false);
+        visibleCloseBtn.setVisible(true);
+    }
+
+    @FXML
+    void btnVisibleClose(ActionEvent event) {
+        txtPassword.setVisible(true);
+        txtVisibleConfirmPassword.setVisible(false);
+        passwordVisiblebtn.setVisible(true);
+        visibleCloseBtn.setVisible(false);
     }
 
     private void clearFields() {
