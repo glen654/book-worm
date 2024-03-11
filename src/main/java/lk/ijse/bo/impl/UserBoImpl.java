@@ -27,4 +27,9 @@ public class UserBoImpl implements UserBo {
             return null;
         }
     }
+
+    @Override
+    public boolean updateUser(UserDto dto) throws SQLException {
+        return userDao.update(new User(dto.getuId(), dto.getUserName(), dto.getPassword(), dto.getConfirmPassword()));
+    }
 }

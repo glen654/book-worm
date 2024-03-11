@@ -35,7 +35,30 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean update(User entity) throws SQLException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("update user set password = :password, confirmPassword = :confirmPassword where userName = :userName");
+            query.setParameter("password",entity.getPassword());
+            query.setParameter("confirmPassword",entity.getConfirmPassword());
+            query.setParameter("userName",entity.getUserName());
+
+            int rowCount = query.executeUpdate();
+            if(rowCount > 0){
+                transaction.commit();
+                return true;
+            }else {
+                transaction.rollback();
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        }finally {
+            session.close();
+        }
     }
 
     @Override

@@ -39,13 +39,25 @@ public class MainUserController {
     }
 
     @FXML
-    void btnDashboardOnAction(ActionEvent event) {
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML
-    void btnPasswordOnAction(ActionEvent event) {
+    void btnPasswordOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/change_password.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML

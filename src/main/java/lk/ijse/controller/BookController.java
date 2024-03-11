@@ -66,8 +66,14 @@ public class BookController implements Initializable {
     BookBo bookBo = (BookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BOOK);
 
     @FXML
-    void btnBooksOnAction(ActionEvent event) {
+    void btnBooksOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/books_form.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML
