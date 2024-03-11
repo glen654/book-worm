@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class ChangePasswordController {
+    public JFXButton closeConfirmVisible;
+    public JFXButton confrimPasswordVisiblebtn;
     @FXML
     private AnchorPane root;
 
@@ -158,7 +160,7 @@ public class ChangePasswordController {
     @FXML
     void btnVisibleClose(ActionEvent event) {
         txtPassword.setVisible(true);
-        txtVisibleConfirmPassword.setVisible(false);
+        txtVisiblePassword.setVisible(false);
         passwordVisiblebtn.setVisible(true);
         visibleCloseBtn.setVisible(false);
     }
@@ -167,5 +169,19 @@ public class ChangePasswordController {
         txtUsername.setText("");
         txtPassword.setText("");
         txtConfirmPassword.setText("");
+    }
+
+    public void btnConfirmVisibleClose(ActionEvent actionEvent) {
+        txtConfirmPassword.setVisible(true);
+        confrimPasswordVisiblebtn.setVisible(true);
+        txtVisibleConfirmPassword.setVisible(false);
+        closeConfirmVisible.setVisible(false);
+    }
+
+    public void btnConfirmPasswordVisible(ActionEvent actionEvent) {
+        txtConfirmPassword.setVisible(false);
+        confrimPasswordVisiblebtn.setVisible(false);
+        txtVisibleConfirmPassword.setVisible(true);
+        closeConfirmVisible.setVisible(true);
     }
 }
