@@ -13,4 +13,5 @@ public interface CrudDao<T> extends SuperDao {
     boolean update(T entity) throws SQLException;
     boolean delete(String title) throws SQLException;
     String getCount();
+    Book search(String title);
 }

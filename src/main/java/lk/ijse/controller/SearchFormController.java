@@ -22,6 +22,9 @@ public class SearchFormController {
     private Label lblStatus;
 
     @FXML
+    private Label lblGenre;
+
+    @FXML
     private AnchorPane rootNode;
 
     @FXML

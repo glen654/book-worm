@@ -49,6 +49,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public Book search(String title) {
+        return null;
+    }
+
+    @Override
     public User signIn(String username, String password) {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();

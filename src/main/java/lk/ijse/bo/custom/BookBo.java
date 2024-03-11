@@ -19,4 +19,6 @@ public interface BookBo extends SuperBo {
     boolean deleteBook(String title) throws SQLException;
 
     String getBookCount() throws SQLException;
+
+    BookDto searchBook(String title);
 }

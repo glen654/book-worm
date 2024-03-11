@@ -49,4 +49,11 @@ public class BookBoImpl implements BookBo {
     public String getBookCount() throws SQLException {
         return bookDao.getCount();
     }
+
+    @Override
+    public BookDto searchBook(String title) {
+        Book book = bookDao.search(title);
+        BookDto bookDto = new BookDto(book.getbId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus());
+        return bookDto;
+    }
 }
