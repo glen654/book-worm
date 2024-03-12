@@ -1,9 +1,9 @@
 package lk.ijse.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.List;
 
 @Entity(name = "books")
 public class Book {
@@ -15,6 +15,8 @@ public class Book {
     private String author;
     private String genre;
     private String status;
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private List<BorrowedBooks> borrowedBooks;
 
     public Book() {
     }

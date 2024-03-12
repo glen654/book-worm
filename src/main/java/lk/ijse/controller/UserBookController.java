@@ -48,8 +48,14 @@ public class UserBookController {
     }
 
     @FXML
-    void btnPasswordOnAction(ActionEvent event) {
+    void btnPasswordOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/change_password.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML

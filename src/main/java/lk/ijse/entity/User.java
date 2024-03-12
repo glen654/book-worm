@@ -1,9 +1,9 @@
 package lk.ijse.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.List;
 
 @Entity(name = "user")
 public class User {
@@ -14,6 +14,8 @@ public class User {
     private String userName;
     private String password;
     private String confirmPassword;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<BorrowedBooks> borrowedBooks;
 
     public User() {
     }
