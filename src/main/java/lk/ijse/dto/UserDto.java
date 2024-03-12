@@ -27,6 +27,10 @@ public class UserDto {
         this.password = password;
     }
 
+    public UserDto(String uId) {
+        this.uId = uId;
+    }
+
     public String getuId() {
         return uId;
     }

@@ -6,4 +6,5 @@ import lk.ijse.entity.User;
 
 public interface UserDao extends CrudDao<User> {
     User signIn(String username, String password);
+    User get(String username);
 }

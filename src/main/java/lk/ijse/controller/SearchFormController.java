@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.BoFactory;
 import lk.ijse.bo.custom.BorrowBookBo;
@@ -34,6 +35,12 @@ public class SearchFormController {
 
     @FXML
     private AnchorPane rootNode;
+
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    private TextField txtUsername;
 
     BorrowBookBo borrowBookBo = (BorrowBookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BORROWEDBOOK);
 
@@ -81,6 +88,11 @@ public class SearchFormController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    void btnConfirmOnAction(ActionEvent event) {
+
     }
 
     public void searchBookDetails(BookDto bookDto) {

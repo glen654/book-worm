@@ -92,4 +92,21 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
+    @Override
+    public User get(String username) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("from user where userName = :userName");
+            query.setParameter("userName",username);
+            return (User) query.uniqueResult();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+    }
 }
