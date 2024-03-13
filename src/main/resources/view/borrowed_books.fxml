@@ -3,16 +3,20 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootNode" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MainUserController">
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BorrowedBooksController">
    <children>
-      <AnchorPane layoutX="7.0" layoutY="12.0" prefHeight="677.0" prefWidth="223.0" style="-fx-background-color: #353b48; -fx-background-radius: 15px;">
+      <AnchorPane layoutX="6.0" layoutY="12.0" prefHeight="677.0" prefWidth="223.0" style="-fx-background-color: #353b48; -fx-background-radius: 15px;">
          <effect>
             <DropShadow />
          </effect>
@@ -104,57 +108,56 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="root" layoutX="238.0" layoutY="16.0" prefHeight="668.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px;">
+      <AnchorPane fx:id="root" layoutX="235.0" layoutY="16.0" prefHeight="668.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <Label layoutX="24.0" layoutY="24.0" prefHeight="46.0" prefWidth="194.0" text="DashBoard">
+            <Label layoutX="31.0" layoutY="27.0" prefHeight="46.0" prefWidth="291.0" text="Borrowed Books">
                <font>
                   <Font name="Ubuntu Mono Bold" size="36.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="24.0" layoutY="104.0" prefHeight="174.0" prefWidth="321.0" style="-fx-background-color: #00b894; -fx-background-radius: 8px;">
-               <effect>
-                  <DropShadow />
-               </effect>
-               <children>
-                  <Label layoutX="14.0" layoutY="14.0" prefHeight="24.0" prefWidth="146.0" text="Borrowed Books" textFill="WHITE">
-                     <font>
-                        <Font name="Ubuntu Mono Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <ImageView layoutX="243.0" layoutY="14.0">
-                     <image>
-                        <Image url="@../assets/icons8-books-48.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="txtBorrowedBooks" layoutX="243.0" layoutY="112.0" prefHeight="30.0" prefWidth="48.0" textFill="WHITE">
-                     <font>
-                        <Font name="Ubuntu Mono Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <Label fx:id="txtName" layoutX="577.0" layoutY="33.0" prefHeight="27.0" prefWidth="167.0">
+            <Label fx:id="txtName" layoutX="579.0" layoutY="48.0" prefHeight="27.0" prefWidth="167.0">
                <font>
                   <Font name="Ubuntu Mono Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView layoutX="529.0" layoutY="58.0">
+            <TableView fx:id="tableBorrowedBooks" layoutX="25.0" layoutY="117.0" prefHeight="338.0" prefWidth="705.0" style="-fx-background-radius: 5px;">
+               <columns>
+                  <TableColumn fx:id="colId" prefWidth="106.0" text="ID" />
+                  <TableColumn fx:id="colBorrowedDate" prefWidth="160.0" text="Borrowed Date" />
+                  <TableColumn fx:id="colDueDate" prefWidth="160.0" text="Due Date" />
+                  <TableColumn fx:id="colBookId" prefWidth="133.0" text="Book ID" />
+                  <TableColumn fx:id="colReturn" prefWidth="145.0" />
+               </columns>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.35221734642982483" green="0.6447368264198303" blue="0.3619680106639862" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TableView>
+            <ImageView layoutX="531.0" layoutY="26.0">
+               <image>
+                  <Image url="@../assets/icons8-admin-48.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="531.0" layoutY="61.0">
                <image>
                   <Image url="@../assets/icons8-dot-24.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="341.0" fitWidth="347.0" layoutX="24.0" layoutY="298.0">
+            <ImageView fitHeight="162.0" fitWidth="403.0" layoutX="21.0" layoutY="482.0">
                <image>
-                  <Image url="@../assets/the-bookworm-is-my-spirit-animal-iii-tina-lavoie.jpg" />
+                  <Image url="@../assets/Reading-WPA-Posters-1940-1024x331.jpg" />
                </image>
                <effect>
                   <DropShadow />
                </effect>
             </ImageView>
-            <ImageView fitHeight="341.0" fitWidth="347.0" layoutX="395.0" layoutY="298.0">
+            <ImageView fitHeight="189.0" fitWidth="284.0" layoutX="450.0" layoutY="465.0">
                <image>
                   <Image url="@../assets/when-in-doubt-go-to-the-library-library.gif" />
                </image>
@@ -162,33 +165,6 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <ImageView layoutX="529.0" layoutY="23.0">
-               <image>
-                  <Image url="@../assets/icons8-admin-48.png" />
-               </image>
-            </ImageView>
-            <AnchorPane layoutX="381.0" layoutY="104.0" prefHeight="174.0" prefWidth="321.0" style="-fx-background-color: #d63031; -fx-background-radius: 8px;">
-               <effect>
-                  <DropShadow />
-               </effect>
-               <children>
-                  <Label layoutX="14.0" layoutY="14.0" prefHeight="24.0" prefWidth="136.0" text="Due Books" textFill="WHITE">
-                     <font>
-                        <Font name="Ubuntu Mono Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <ImageView layoutX="243.0" layoutY="14.0">
-                     <image>
-                        <Image url="@../assets/icons8-books-48.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="txtDueBooks" layoutX="243.0" layoutY="115.0" prefHeight="30.0" prefWidth="48.0" textFill="WHITE">
-                     <font>
-                        <Font name="Ubuntu Mono Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

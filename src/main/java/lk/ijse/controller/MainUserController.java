@@ -70,4 +70,16 @@ public class MainUserController {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Book Worm");
     }
+
+
+    @FXML
+    void btnBorrowedOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/borrowed_books.fxml"));
+
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
+    }
 }
