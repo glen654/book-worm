@@ -2,6 +2,7 @@ package lk.ijse.bo.impl;
 
 import lk.ijse.bo.custom.BorrowBookBo;
 import lk.ijse.config.FactoryConfiguration;
+import lk.ijse.dto.UserDto;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.BorrowedBooks;
 import lk.ijse.entity.User;
