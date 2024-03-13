@@ -28,15 +28,15 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
 
         try{
             transaction = session.beginTransaction();
-            BookDto bookDto = bookBo.getBookId(dto.getbId());
-
-            Book book =new Book();
-            book.setbId(book.getbId());
-            book.setStatus(book.getStatus());
+            BookDto bookDto =  bookBo.searchBook(dto.getTitle());
 
             if(bookDto != null && "Available".equals(bookDto.getStatus())){
                 dto.setStatus("Unavailable");
                 bookBo.updateBook(bookDto);
+
+                Book book =new Book();
+                book.setbId(bookDto.getbId());
+                book.setStatus(bookDto.getStatus());
 
                 BorrowedBooks borrowedBooks = new BorrowedBooks();
 

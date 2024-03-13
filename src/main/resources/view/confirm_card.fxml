@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SearchFormController">
    <children>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="21.0" layoutY="14.0">
@@ -21,12 +20,12 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <Label layoutX="41.0" layoutY="236.0" prefHeight="51.0" prefWidth="487.0" text="Enter your Username to confirm the Book">
+      <Label layoutX="41.0" layoutY="214.0" prefHeight="51.0" prefWidth="555.0" text="Enter your Username And Book Name to confirm">
          <font>
             <Font name="Ubuntu Mono Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUsername" layoutX="41.0" layoutY="303.0" prefHeight="41.0" prefWidth="345.0" promptText="Username" style="-fx-background-radius: 10px;" />
+      <TextField fx:id="txtUsername" layoutX="41.0" layoutY="273.0" prefHeight="41.0" prefWidth="252.0" promptText="Username" style="-fx-background-radius: 10px;" />
       <JFXButton buttonType="RAISED" layoutX="466.0" layoutY="344.0" onAction="#btnConfirmOnAction" prefHeight="41.0" prefWidth="103.0" style="-fx-background-color: #1abc9c; -fx-background-radius: 10px;" text="Confirm">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -35,5 +34,6 @@
             <Font name="Ubuntu Mono Bold" size="18.0" />
          </font>
       </JFXButton>
+      <TextField fx:id="txtTitle" layoutX="41.0" layoutY="336.0" prefHeight="41.0" prefWidth="252.0" promptText="Book Title" style="-fx-background-radius: 10px;" />
    </children>
 </AnchorPane>

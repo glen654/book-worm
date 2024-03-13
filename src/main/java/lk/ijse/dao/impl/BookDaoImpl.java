@@ -157,7 +157,7 @@ public class BookDaoImpl implements BookDao {
         Transaction transaction = session.beginTransaction();
 
         try{
-            Query query = session.createQuery("select bId from books where title = :title");
+            Query query = session.createQuery(" from books where title = :title");
             query.setParameter("title",title);
 
             Book book = (Book) query.uniqueResult();

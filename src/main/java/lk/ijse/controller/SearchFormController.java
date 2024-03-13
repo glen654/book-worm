@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.bo.BoFactory;
+import lk.ijse.bo.custom.BookBo;
 import lk.ijse.bo.custom.BorrowBookBo;
 import lk.ijse.bo.custom.UserBo;
 import lk.ijse.dto.BookDto;
@@ -47,14 +48,13 @@ public class SearchFormController {
     private AnchorPane root;
 
     @FXML
+    private TextField txtTitle;
+
+    @FXML
     private TextField txtUsername;
-    private String currentBookId;
     BorrowBookBo borrowBookBo = (BorrowBookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BORROWEDBOOK);
     UserBo userBo = (UserBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.USER);
-    private String currenBookName;
-    private String currentAuthor;
-    private String currentGenre;
-    private String currentStatus;
+    BookBo bookBo = (BookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BOOK);
 
     @FXML
     void btnBorrowOnAction(ActionEvent event) throws IOException {
@@ -71,15 +71,10 @@ public class SearchFormController {
 
     @FXML
     void btnConfirmOnAction(ActionEvent event) {
-        String bookId = currentBookId;
-        String title = currenBookName;
-        String author = currentAuthor;
-        String genre = currentGenre;
-        String status = currentStatus;
-
+        String title = txtTitle.getText();
         String userName = txtUsername.getText();
 
-        BookDto book = new BookDto(bookId,title,author,genre,status);
+        BookDto book = bookBo.searchBook(title);
 
         try {
             UserDto userDto = userBo.getUserId(userName);
@@ -116,11 +111,6 @@ public class SearchFormController {
     }
 
     public void searchBookDetails(BookDto bookDto) {
-        currentBookId = bookDto.getbId();
-        currenBookName = bookDto.getTitle();
-        currentAuthor = bookDto.getAuthor();
-        currentGenre = bookDto.getGenre();
-        currentStatus = bookDto.getStatus();
         lblName.setText(bookDto.getTitle());
         lblBookId.setText(bookDto.getbId());
         lblBookName.setText(bookDto.getTitle());
