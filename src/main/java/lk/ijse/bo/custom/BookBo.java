@@ -23,4 +23,6 @@ public interface BookBo extends SuperBo {
     BookDto searchBook(String title);
 
     BookDto getBookId(String title);
+
+    boolean updateBookStatus(BookDto dto) throws SQLException;
 }

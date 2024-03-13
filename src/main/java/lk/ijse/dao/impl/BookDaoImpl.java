@@ -174,4 +174,31 @@ public class BookDaoImpl implements BookDao {
         }
         return null;
     }
+
+    @Override
+    public boolean updateStatus(Book entity) throws SQLException {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("update books set status = :status where title = :title");
+            query.setParameter("author",entity.getAuthor());
+            query.setParameter("title",entity.getTitle());
+
+            int rowCount = query.executeUpdate();
+            if(rowCount > 0){
+                transaction.commit();
+                return true;
+            }else {
+                transaction.rollback();
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        }finally {
+            session.close();
+        }
+    }
 }

@@ -22,16 +22,16 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
     BookBo bookBo = (BookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BOOK);
     private static final int BORROWING_DAYS = 14;
     @Override
-    public boolean placeBorrow(User user, BookDto dto) throws SQLException {
+    public boolean placeBorrow(User user, BookDto bookdto) throws SQLException {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = null;
 
         try{
             transaction = session.beginTransaction();
-            BookDto bookDto =  bookBo.getBookId(dto.getTitle());
+            BookDto bookDto =  bookBo.getBookId(bookdto.getTitle());
 
             if(bookDto != null && "Available".equals(bookDto.getStatus())){
-                dto.setStatus("Unavailable");
+                bookdto.setStatus("Unavailable");
                 bookBo.updateBook(bookDto);
 
                 Book book =new Book();

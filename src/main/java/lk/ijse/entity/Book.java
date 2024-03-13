@@ -36,6 +36,9 @@ public class Book {
         this.status = status;
     }
 
+    public Book(String status) {
+        this.status = status;
+    }
 
 
     public String getbId() {

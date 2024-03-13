@@ -70,4 +70,9 @@ public class BookBoImpl implements BookBo {
         BookDto bookDto = new BookDto(book.getbId());
         return bookDto;
     }
+
+    @Override
+    public boolean updateBookStatus(BookDto dto) throws SQLException {
+        return bookDao.updateStatus(new Book(dto.getStatus()));
+    }
 }
