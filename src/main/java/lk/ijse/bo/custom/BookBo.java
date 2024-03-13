@@ -21,4 +21,6 @@ public interface BookBo extends SuperBo {
     String getBookCount() throws SQLException;
 
     BookDto searchBook(String title);
+
+    BookDto getBookId(String title);
 }

@@ -31,6 +31,10 @@ public class BookDto {
         this.status = status;
     }
 
+    public BookDto(String bId) {
+        this.bId = bId;
+    }
+
     public String getbId() {
         return bId;
     }

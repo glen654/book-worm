@@ -56,4 +56,11 @@ public class BookBoImpl implements BookBo {
         BookDto bookDto = new BookDto(book.getbId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus());
         return bookDto;
     }
+
+    @Override
+    public BookDto getBookId(String title) {
+        Book book = bookDao.getId(title);
+        BookDto bookDto = new BookDto(book.getbId());
+        return bookDto;
+    }
 }

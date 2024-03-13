@@ -4,4 +4,5 @@ import lk.ijse.dao.CrudDao;
 import lk.ijse.entity.Book;
 
 public interface BookDao extends CrudDao<Book> {
+    Book getId(String title);
 }

@@ -48,8 +48,14 @@ public class SearchFormController {
 
     @FXML
     private TextField txtUsername;
+    private String currentBookId;
     BorrowBookBo borrowBookBo = (BorrowBookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BORROWEDBOOK);
     UserBo userBo = (UserBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.USER);
+    private String currenBookName;
+    private String currentAuthor;
+    private String currentGenre;
+    private String currentStatus;
+
     @FXML
     void btnBorrowOnAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/confirm_card.fxml"));
@@ -65,14 +71,15 @@ public class SearchFormController {
 
     @FXML
     void btnConfirmOnAction(ActionEvent event) {
-        String bookId = lblBookId.getText();
-        String bookName = lblBookName.getText();
-        String author = lblAuthor.getText();
-        String genre = lblGenre.getText();
-        String status = lblStatus.getText();
+        String bookId = currentBookId;
+        String title = currenBookName;
+        String author = currentAuthor;
+        String genre = currentGenre;
+        String status = currentStatus;
+
         String userName = txtUsername.getText();
 
-        Book book = new Book(bookId, bookName, author, genre, status);
+        BookDto book = new BookDto(bookId,title,author,genre,status);
 
         try {
             UserDto userDto = userBo.getUserId(userName);
@@ -90,7 +97,7 @@ public class SearchFormController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,"An Error occcured when borrowing the book").show();
+            new Alert(Alert.AlertType.ERROR,"An Error occurred when borrowing the book").show();
         }
     }
 
@@ -109,6 +116,11 @@ public class SearchFormController {
     }
 
     public void searchBookDetails(BookDto bookDto) {
+        currentBookId = bookDto.getbId();
+        currenBookName = bookDto.getTitle();
+        currentAuthor = bookDto.getAuthor();
+        currentGenre = bookDto.getGenre();
+        currentStatus = bookDto.getStatus();
         lblName.setText(bookDto.getTitle());
         lblBookId.setText(bookDto.getbId());
         lblBookName.setText(bookDto.getTitle());

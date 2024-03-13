@@ -150,4 +150,28 @@ public class BookDaoImpl implements BookDao {
             return null;
         }
     }
+
+    @Override
+    public Book getId(String title) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("select bId from books where title = :title");
+            query.setParameter("title",title);
+
+            Book book = (Book) query.uniqueResult();
+
+            transaction.commit();
+            return book;
+        }catch (Exception e){
+            if(transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return null;
+    }
 }

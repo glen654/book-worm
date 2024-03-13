@@ -1,7 +1,13 @@
 package lk.ijse.bo.impl;
 
+import lk.ijse.bo.BoFactory;
+import lk.ijse.bo.custom.BookBo;
 import lk.ijse.bo.custom.BorrowBookBo;
 import lk.ijse.config.FactoryConfiguration;
+import lk.ijse.dao.DaoFactory;
+import lk.ijse.dao.custom.BookDao;
+import lk.ijse.dao.custom.BranchDao;
+import lk.ijse.dto.BookDto;
 import lk.ijse.dto.UserDto;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.BorrowedBooks;
@@ -13,29 +19,42 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class BorrowedBookBoImpl implements BorrowBookBo {
+    BookBo bookBo = (BookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BOOK);
     private static final int BORROWING_DAYS = 14;
     @Override
-    public boolean placeBorrow(User user, Book book) throws SQLException {
+    public boolean placeBorrow(User user, BookDto dto) throws SQLException {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = null;
 
         try{
             transaction = session.beginTransaction();
-            book.setStatus("Unavailable");
+            BookDto bookDto = bookBo.getBookId(dto.getbId());
 
-            BorrowedBooks borrowedBooks = new BorrowedBooks();
+            Book book =new Book();
+            book.setbId(book.getbId());
+            book.setStatus(book.getStatus());
 
-            borrowedBooks.setUser(user);
-            borrowedBooks.setBook(book);
-            borrowedBooks.setBorrowedDate(LocalDateTime.now());
+            if(bookDto != null && "Available".equals(bookDto.getStatus())){
+                dto.setStatus("Unavailable");
+                bookBo.updateBook(bookDto);
 
-            LocalDateTime returnDate = LocalDateTime.now().plusDays(BORROWING_DAYS);
-            borrowedBooks.setReturnDate(returnDate);
+                BorrowedBooks borrowedBooks = new BorrowedBooks();
 
-            session.save(borrowedBooks);
+                borrowedBooks.setUser(user);
+                borrowedBooks.setBook(book);
+                borrowedBooks.setBorrowedDate(LocalDateTime.now());
 
-            transaction.commit();
-            return true;
+                LocalDateTime returnDate = LocalDateTime.now().plusDays(BORROWING_DAYS);
+                borrowedBooks.setReturnDate(returnDate);
+
+                session.save(borrowedBooks);
+
+                transaction.commit();
+                return true;
+            }else {
+                return false;
+            }
+
         }catch (Exception e){
             if(transaction != null){
                 transaction.rollback();
