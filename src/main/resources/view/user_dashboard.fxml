@@ -97,9 +97,9 @@
                   <Bloom />
                </effect>
             </JFXButton>
-            <ImageView layoutX="39.0" layoutY="384.0">
+            <ImageView layoutX="38.0" layoutY="384.0">
                <image>
-                  <Image url="@../assets/icons8-books-30%20(1).png" />
+                  <Image url="@../assets/icons8-books-35.png" />
                </image>
             </ImageView>
          </children>
@@ -141,11 +141,6 @@
                   <Font name="Ubuntu Mono Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView layoutX="529.0" layoutY="58.0">
-               <image>
-                  <Image url="@../assets/icons8-dot-24.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="341.0" fitWidth="347.0" layoutX="24.0" layoutY="298.0">
                <image>
                   <Image url="@../assets/the-bookworm-is-my-spirit-animal-iii-tina-lavoie.jpg" />
@@ -161,11 +156,6 @@
                <effect>
                   <DropShadow />
                </effect>
-            </ImageView>
-            <ImageView layoutX="529.0" layoutY="23.0">
-               <image>
-                  <Image url="@../assets/icons8-admin-48.png" />
-               </image>
             </ImageView>
             <AnchorPane layoutX="381.0" layoutY="104.0" prefHeight="174.0" prefWidth="321.0" style="-fx-background-color: #d63031; -fx-background-radius: 8px;">
                <effect>
@@ -189,6 +179,16 @@
                   </Label>
                </children>
             </AnchorPane>
+            <ImageView layoutX="521.0" layoutY="23.0">
+               <image>
+                  <Image url="@../assets/icons8-admin-48.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="518.0" layoutY="58.0">
+               <image>
+                  <Image url="@../assets/icons8-dot-24.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

@@ -28,7 +28,7 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
 
         try{
             transaction = session.beginTransaction();
-            BookDto bookDto =  bookBo.searchBook(dto.getTitle());
+            BookDto bookDto =  bookBo.getBookId(dto.getTitle());
 
             if(bookDto != null && "Available".equals(bookDto.getStatus())){
                 dto.setStatus("Unavailable");
