@@ -2,23 +2,33 @@ package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import lk.ijse.dto.BorrowedBooksDto;
+import lk.ijse.dto.tm.BorrowedBooksTm;
+import lk.ijse.entity.Book;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class BorrowedBooksController {
     @FXML
-    private TableColumn<?, ?> colBookId;
+    private TableColumn<BorrowedBooksDto, Book> colBookId;
 
     @FXML
-    private TableColumn<?, ?> colBorrowedDate;
+    private TableColumn<BorrowedBooksDto, LocalDateTime> colBorrowedDate;
 
     @FXML
-    private TableColumn<?, ?> colDueDate;
+    private TableColumn<BorrowedBooksDto, LocalDateTime> colDueDate;
 
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<BorrowedBooksDto, String> colId;
 
     @FXML
     private TableColumn<?, ?> colReturn;
@@ -27,33 +37,66 @@ public class BorrowedBooksController {
     private AnchorPane root;
 
     @FXML
-    private TableView<?> tableBorrowedBooks;
+    private TableView<BorrowedBooksTm> tableBorrowedBooks;
 
     @FXML
     private Label txtName;
 
     @FXML
-    void btnBooksOnAction(ActionEvent event) {
+    private AnchorPane rootNode;
 
+    @FXML
+    void btnBooksOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/user_book.fxml"));
+
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML
-    void btnBorrowedOnAction(ActionEvent event) {
+    void btnBorrowedOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/borrowed_books.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML
-    void btnDashboardOnAction(ActionEvent event) {
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML
-    void btnPasswordOnAction(ActionEvent event) {
+    void btnPasswordOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/change_password.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML
-    void btnSignOutOnAction(ActionEvent event) {
+    void btnSignOutOnAction(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_login.fxml"));
 
+        Scene scene = new Scene(rootNode);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 }
