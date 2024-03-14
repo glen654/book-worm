@@ -182,7 +182,7 @@ public class BookDaoImpl implements BookDao {
 
         try{
             Query query = session.createQuery("update books set status = :status where title = :title");
-            query.setParameter("author",entity.getAuthor());
+            query.setParameter("status",entity.getStatus());
             query.setParameter("title",entity.getTitle());
 
             int rowCount = query.executeUpdate();

@@ -1,6 +1,7 @@
 package lk.ijse.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.dto.UserDto;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;

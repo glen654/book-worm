@@ -1,7 +1,10 @@
 package lk.ijse.dao.impl;
 
+import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.BorrowedBooksDao;
 import lk.ijse.entity.BorrowedBooks;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -9,7 +12,12 @@ import java.util.List;
 public class BorrowedDaoImpl implements BorrowedBooksDao {
     @Override
     public boolean save(BorrowedBooks entity) throws SQLException {
-        return false;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

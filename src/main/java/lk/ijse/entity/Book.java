@@ -21,15 +21,17 @@ public class Book {
     public Book() {
     }
 
-    public Book(String bId, String title, String author, String genre, String status) {
+    public Book(String bId, String title, String author, String genre, String status, List<BorrowedBooks> borrowedBooks) {
         this.bId = bId;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.status = status;
+        this.borrowedBooks = borrowedBooks;
     }
 
-    public Book(String title, String author, String genre, String status) {
+    public Book(String bId, String title, String author, String genre, String status) {
+        this.bId = bId;
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -39,7 +41,6 @@ public class Book {
     public Book(String status) {
         this.status = status;
     }
-
 
     public String getbId() {
         return bId;
@@ -81,6 +82,14 @@ public class Book {
         this.status = status;
     }
 
+    public List<BorrowedBooks> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+    public void setBorrowedBooks(List<BorrowedBooks> borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -89,6 +98,7 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +
                 ", status='" + status + '\'' +
+                ", borrowedBooks=" + borrowedBooks +
                 '}';
     }
 }

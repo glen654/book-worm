@@ -6,6 +6,7 @@ import lk.ijse.bo.custom.BorrowBookBo;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.custom.BookDao;
+import lk.ijse.dao.custom.BorrowedBooksDao;
 import lk.ijse.dao.custom.BranchDao;
 import lk.ijse.dto.BookDto;
 import lk.ijse.dto.UserDto;
@@ -19,29 +20,27 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class BorrowedBookBoImpl implements BorrowBookBo {
-    BookBo bookBo = (BookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BOOK);
+    BookDao bookDao = (BookDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.BOOK);
+    BorrowedBooksDao borrowedBooksDao = (BorrowedBooksDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.BORROWEDBOOKS);
     private static final int BORROWING_DAYS = 14;
     @Override
     public boolean placeBorrow(User user, BookDto bookdto) throws SQLException {
+        String title = bookdto.getTitle();
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = null;
 
         try{
             transaction = session.beginTransaction();
-            BookDto bookDto =  bookBo.getBookId(bookdto.getTitle());
+            Book bookDto =  bookDao.getId(title);
 
             if(bookDto != null && "Available".equals(bookDto.getStatus())){
                 bookdto.setStatus("Unavailable");
-                bookBo.updateBook(bookDto);
-
-                Book book =new Book();
-                book.setbId(bookDto.getbId());
-                book.setStatus(bookDto.getStatus());
+                bookDao.updateStatus(bookDto);
 
                 BorrowedBooks borrowedBooks = new BorrowedBooks();
 
                 borrowedBooks.setUser(user);
-                borrowedBooks.setBook(book);
+                borrowedBooks.setBook(bookDto);
                 borrowedBooks.setBorrowedDate(LocalDateTime.now());
 
                 LocalDateTime returnDate = LocalDateTime.now().plusDays(BORROWING_DAYS);
@@ -66,6 +65,5 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
                 session.close();
             }
         }
-
     }
 }

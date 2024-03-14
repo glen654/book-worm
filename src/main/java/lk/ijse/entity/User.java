@@ -20,6 +20,14 @@ public class User {
     public User() {
     }
 
+    public User(String uId, String userName, String password, String confirmPassword, List<BorrowedBooks> borrowedBooks) {
+        this.uId = uId;
+        this.userName = userName;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.borrowedBooks = borrowedBooks;
+    }
+
     public User(String uId, String userName, String password, String confirmPassword) {
         this.uId = uId;
         this.userName = userName;
@@ -59,6 +67,15 @@ public class User {
         this.confirmPassword = confirmPassword;
     }
 
+    public List<BorrowedBooks> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+    public void setBorrowedBooks(List<BorrowedBooks> borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -66,6 +83,7 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
+                ", borrowedBooks=" + borrowedBooks +
                 '}';
     }
 }
