@@ -52,16 +52,9 @@ public class BookBoImpl implements BookBo {
 
     @Override
     public BookDto searchBook(String title) {
-       /* Book book = bookDao.search(title);
-        BookDto bookDto = new BookDto(book.getbId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus());
-        return bookDto;*/
         Book book = bookDao.search(title);
-        if (book != null) {
-            BookDto bookDto = new BookDto(book.getbId(), book.getTitle(), book.getAuthor(), book.getGenre(), book.getStatus());
-            return bookDto;
-        } else {
-            return null;
-        }
+        BookDto bookDto = new BookDto(book.getbId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus());
+        return bookDto;
     }
 
     @Override

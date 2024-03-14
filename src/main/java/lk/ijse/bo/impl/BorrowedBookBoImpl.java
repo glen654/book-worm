@@ -28,46 +28,6 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
     private static final int BORROWING_DAYS = 14;
     @Override
     public boolean placeBorrow(User user, BookDto bookdto) throws SQLException {
-       /* String title = bookdto.getTitle();
-        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
-        Transaction transaction = null;
-
-        try{
-            transaction = session.beginTransaction();
-            Book bookDto =  bookDao.getId(title);
-
-            if(bookDto != null && "Available".equals(bookDto.getStatus())){
-                bookdto.setStatus("Unavailable");
-                bookDao.updateStatus(bookDto);
-
-                BorrowedBooks borrowedBooks = new BorrowedBooks();
-                String user1 = userDao.get(user.getuId());
-                borrowedBooks.setUser(user);
-                borrowedBooks.setBook(bookDto);
-                borrowedBooks.setBorrowedDate(LocalDateTime.now());
-
-                LocalDateTime returnDate = LocalDateTime.now().plusDays(BORROWING_DAYS);
-                borrowedBooks.setReturnDate(returnDate);
-
-                session.save(borrowedBooks);
-                transaction.commit();
-                return true;
-            }else {
-                return false;
-            }
-
-        }catch (Exception e){
-            if(transaction != null){
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            return false;
-        }finally {
-            if(session != null && session.isOpen()){
-                session.close();
-            }
-        }*/
-
         String title = bookdto.getTitle();
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = null;
@@ -75,9 +35,8 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
         try {
             transaction = session.beginTransaction();
             Book bookDto = bookDao.getId(title);
-
             if (bookDto != null && "Available".equals(bookDto.getStatus())) {
-                bookdto.setStatus("Unavailable");
+                bookDto.setStatus("Unavailable");
                 bookDao.updateStatus(bookDto);
 
                 BorrowedBooks borrowedBooks = new BorrowedBooks();
