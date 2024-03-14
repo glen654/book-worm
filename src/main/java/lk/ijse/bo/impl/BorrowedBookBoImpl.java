@@ -10,6 +10,7 @@ import lk.ijse.dao.custom.BorrowedBooksDao;
 import lk.ijse.dao.custom.BranchDao;
 import lk.ijse.dao.custom.UserDao;
 import lk.ijse.dto.BookDto;
+import lk.ijse.dto.BorrowedBooksDto;
 import lk.ijse.dto.UserDto;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.BorrowedBooks;
@@ -20,11 +21,12 @@ import org.hibernate.Transaction;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BorrowedBookBoImpl implements BorrowBookBo {
     BookDao bookDao = (BookDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.BOOK);
     BorrowedBooksDao borrowedBooksDao = (BorrowedBooksDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.BORROWEDBOOKS);
-    UserDao userDao = (UserDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.USER);
     private static final int BORROWING_DAYS = 14;
     @Override
     public boolean placeBorrow(User user, BookDto bookdto) throws SQLException {
@@ -66,5 +68,15 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
                 session.close();
             }
         }
+    }
+
+    @Override
+    public List<BorrowedBooksDto> getAllBorrowedBooks() {
+        List<BorrowedBooks> borrowedBooks = borrowedBooksDao.getAll();
+        List<BorrowedBooksDto> borrowedBooksDtos = new ArrayList<>();
+        for(BorrowedBooks books : borrowedBooks){
+            borrowedBooksDtos.add(new BorrowedBooksDto(books.getgId(),books.getBorrowedDate(),books.getReturnDate(),books.getBook(),books.getUser()));
+        }
+        return borrowedBooksDtos;
     }
 }

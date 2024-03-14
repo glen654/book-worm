@@ -1,18 +1,21 @@
 package lk.ijse.dto.tm;
 
+import lk.ijse.entity.Book;
+import lk.ijse.entity.User;
+
 import java.time.LocalDateTime;
 
 public class BorrowedBooksTm {
     private String bId;
     private LocalDateTime borrowedDate;
     private LocalDateTime returnDate;
-    private String bookId;
-    private String uId;
+    private Book bookId;
+    private User uId;
 
     public BorrowedBooksTm() {
     }
 
-    public BorrowedBooksTm(String bId, LocalDateTime borrowedDate, LocalDateTime returnDate, String bookId, String uId) {
+    public BorrowedBooksTm(String bId, LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, User uId) {
         this.bId = bId;
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
@@ -44,19 +47,19 @@ public class BorrowedBooksTm {
         this.returnDate = returnDate;
     }
 
-    public String getBookId() {
+    public Book getBookId() {
         return bookId;
     }
 
-    public void setBookId(String bookId) {
+    public void setBookId(Book bookId) {
         this.bookId = bookId;
     }
 
-    public String getuId() {
+    public User getuId() {
         return uId;
     }
 
-    public void setuId(String uId) {
+    public void setuId(User uId) {
         this.uId = uId;
     }
 
@@ -66,8 +69,8 @@ public class BorrowedBooksTm {
                 "bId='" + bId + '\'' +
                 ", borrowedDate=" + borrowedDate +
                 ", returnDate=" + returnDate +
-                ", bookId='" + bookId + '\'' +
-                ", uId='" + uId + '\'' +
+                ", bookId=" + bookId +
+                ", uId=" + uId +
                 '}';
     }
 }
