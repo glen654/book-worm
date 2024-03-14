@@ -94,14 +94,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User get(String username) {
+    public String get(String username) {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
 
         try{
-            Query query = session.createQuery("from user where userName = :userName");
+            Query query = session.createQuery("select uId from user where userName = :userName");
             query.setParameter("userName",username);
-            return (User) query.uniqueResult();
+            return (String) query.uniqueResult();
         }catch (Exception e){
             e.printStackTrace();
             return null;

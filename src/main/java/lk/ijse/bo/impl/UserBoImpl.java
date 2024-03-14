@@ -35,9 +35,9 @@ public class UserBoImpl implements UserBo {
 
     @Override
     public UserDto getUserId(String username) throws SQLException {
-        User user = userDao.get(username);
+        String user = userDao.get(username);
         if(user != null){
-            UserDto userDto = new UserDto(user.getuId());
+            UserDto userDto = new UserDto(user);
             return userDto;
         }else {
             return null;

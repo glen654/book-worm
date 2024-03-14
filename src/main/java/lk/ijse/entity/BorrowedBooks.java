@@ -12,10 +12,10 @@ public class BorrowedBooks {
     @GeneratedValue(generator = "Borrowed-Id-Generator")
     @GenericGenerator(name = "Borrowed-Id-Generator", strategy = "lk.ijse.util.BorrowedIdGenerator")
     private String gId;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user",referencedColumnName = "uId")
     private User user;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "book",referencedColumnName = "bId")
     private Book book;
     private LocalDateTime borrowedDate;

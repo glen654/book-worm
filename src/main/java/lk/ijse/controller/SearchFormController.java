@@ -74,14 +74,12 @@ public class SearchFormController {
         String title = txtTitle.getText();
         String userName = txtUsername.getText();
 
-        BookDto book = bookBo.searchBook(title);
-
         try {
+            BookDto book = bookBo.searchBook(title);
             UserDto userDto = userBo.getUserId(userName);
 
-            User currentUser = convertToUser(userDto);
-            if (currentUser != null) {
-                boolean success = borrowBookBo.placeBorrow(currentUser, book);
+            if (userDto != null) {
+                boolean success = borrowBookBo.placeBorrow(convertToUser(userDto), book);
                 if (success) {
                     new Alert(Alert.AlertType.CONFIRMATION,"Book borrowed successfull").show();
                 } else {
