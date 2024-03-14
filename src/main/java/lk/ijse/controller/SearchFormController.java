@@ -81,11 +81,14 @@ public class SearchFormController {
             if (userDto != null) {
                 boolean success = borrowBookBo.placeBorrow(convertToUser(userDto), book);
                 if (success) {
+                    clearFields();
                     new Alert(Alert.AlertType.CONFIRMATION,"Book borrowed successfull").show();
                 } else {
+                    clearFields();
                     new Alert(Alert.AlertType.ERROR,"Book borrow Unsuccessfull").show();
                 }
             } else {
+                clearFields();
                 new Alert(Alert.AlertType.ERROR,"Please log into Borrow a Book").show();
             }
         } catch (SQLException e) {
@@ -115,5 +118,10 @@ public class SearchFormController {
         lblAuthor.setText(bookDto.getAuthor());
         lblGenre.setText(bookDto.getGenre());
         lblStatus.setText(bookDto.getStatus());
+    }
+
+    private void clearFields() {
+        txtTitle.setText("");
+        txtUsername.setText("");
     }
 }
