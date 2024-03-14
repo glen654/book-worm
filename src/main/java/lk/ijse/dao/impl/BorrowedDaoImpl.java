@@ -2,9 +2,11 @@ package lk.ijse.dao.impl;
 
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.BorrowedBooksDao;
+import lk.ijse.entity.Book;
 import lk.ijse.entity.BorrowedBooks;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,7 +24,19 @@ public class BorrowedDaoImpl implements BorrowedBooksDao {
 
     @Override
     public List<BorrowedBooks> getAll() {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("from borrowedBooks ");
+            return (List<BorrowedBooks>) query.list();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+            return null;
+        }finally {
+            session.close();
+        }
     }
 
     @Override
