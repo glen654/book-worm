@@ -75,13 +75,25 @@ public class MainAdminController implements Initializable {
     }
 
     @FXML
-    void btnUsersOnAction(ActionEvent event) {
+    void btnUsersOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/user_form.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML
-    void btnDashboardOnAction(ActionEvent event) {
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @Override
