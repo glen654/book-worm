@@ -1,19 +1,30 @@
 package lk.ijse.dto.tm;
 
+import com.jfoenix.controls.JFXButton;
+
 public class UserTm {
     private String uId;
     private String userName;
     private String password;
     private String confirmPassword;
 
+    private JFXButton Transactions;
+
     public UserTm() {
     }
 
-    public UserTm(String uId, String userName, String password, String confirmPassword) {
+    public UserTm(String uId, String userName, String password, String confirmPassword, JFXButton transactions) {
         this.uId = uId;
         this.userName = userName;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        Transactions = transactions;
+    }
+
+
+    public UserTm(String userName, JFXButton btnTransactions) {
+        this.userName = userName;
+        this.Transactions = btnTransactions;
     }
 
     public String getuId() {
@@ -48,6 +59,14 @@ public class UserTm {
         this.confirmPassword = confirmPassword;
     }
 
+    public JFXButton getTransactions() {
+        return Transactions;
+    }
+
+    public void setTransactions(JFXButton transactions) {
+        Transactions = transactions;
+    }
+
     @Override
     public String toString() {
         return "UserTm{" +
@@ -55,6 +74,7 @@ public class UserTm {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
+                ", Transactions=" + Transactions +
                 '}';
     }
 }
