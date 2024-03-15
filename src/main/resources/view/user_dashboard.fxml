@@ -136,7 +136,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Label fx:id="txtName" layoutX="577.0" layoutY="33.0" prefHeight="27.0" prefWidth="167.0">
+            <Label fx:id="txtName" layoutX="569.0" layoutY="45.0" prefHeight="27.0" prefWidth="167.0">
                <font>
                   <Font name="Ubuntu Mono Bold" size="14.0" />
                </font>

@@ -201,4 +201,26 @@ public class BookDaoImpl implements BookDao {
             session.close();
         }
     }
+
+    @Override
+    public Book getWithBorrowedBooks(String bookId) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+
+            Book book = session.createQuery(
+                            "SELECT b FROM books b LEFT JOIN FETCH b.borrowedBooks WHERE b.id = :bookId", Book.class)
+                    .setParameter("bookId", bookId)
+                    .uniqueResult();
+
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+
+        return null;
+    }
 }

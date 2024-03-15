@@ -9,4 +9,5 @@ public interface BookDao extends CrudDao<Book> {
     Book getId(String title);
 
     boolean updateStatus(Book entity) throws SQLException;
+    public Book getWithBorrowedBooks(String bookId);
 }

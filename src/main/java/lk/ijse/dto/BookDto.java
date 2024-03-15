@@ -1,5 +1,7 @@
 package lk.ijse.dto;
 
+import java.util.List;
+
 public class BookDto {
     private String bId;
     private String title;
@@ -85,4 +87,5 @@ public class BookDto {
                 ", status='" + status + '\'' +
                 '}';
     }
+
 }

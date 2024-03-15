@@ -43,4 +43,9 @@ public class UserBoImpl implements UserBo {
             return null;
         }
     }
+
+    @Override
+    public String getUserCount() throws SQLException {
+        return userDao.getCount();
+    }
 }

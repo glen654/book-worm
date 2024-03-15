@@ -180,11 +180,6 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Label fx:id="txtName" layoutX="577.0" layoutY="33.0" prefHeight="27.0" prefWidth="167.0">
-               <font>
-                  <Font name="Ubuntu Mono Bold" size="14.0" />
-               </font>
-            </Label>
             <ImageView layoutX="529.0" layoutY="58.0">
                <image>
                   <Image url="@../assets/icons8-dot-24.png" />
@@ -211,6 +206,11 @@
                   <Image url="@../assets/icons8-admin-48.png" />
                </image>
             </ImageView>
+            <Label fx:id="txtName" layoutX="577.0" layoutY="50.0" prefHeight="24.0" prefWidth="156.0">
+               <font>
+                  <Font name="Ubuntu Mono Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

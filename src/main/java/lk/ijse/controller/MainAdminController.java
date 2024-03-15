@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import lk.ijse.bo.BoFactory;
 import lk.ijse.bo.custom.BookBo;
 import lk.ijse.bo.custom.BranchBo;
+import lk.ijse.bo.custom.UserBo;
 import lk.ijse.dao.DaoFactory;
 
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class MainAdminController implements Initializable {
     private Label txtUserCount;
     BranchBo branchBo = (BranchBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BRANCH);
     BookBo bookBo = (BookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BOOK);
+    UserBo userBo = (UserBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.USER);
     @FXML
     void btnBooksOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/books_form.fxml"));
@@ -86,6 +88,18 @@ public class MainAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTxtBranchCount(txtBranchCount);
         setTxtBookCount(txtBookCount);
+        setUserCount(txtUserCount);
+    }
+
+    private void setUserCount(Label txtUserCount) {
+        String userCount = String.valueOf(0);
+
+        try {
+            userCount = userBo.getUserCount();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        txtUserCount.setText(userCount);
     }
 
     public void setTxtBranchCount(Label txtBranchCount) {
@@ -109,7 +123,12 @@ public class MainAdminController implements Initializable {
         txtBookCount.setText(bookCount);
     }
 
-    public void setDisplayName(String displayName) {
-        txtName.setText(displayName);
+    public void setUserName(String userName) {
+       /* this.txtName.setText(userName);*/
+        if(txtName != null){
+            txtName.setText(userName);
+        }else {
+            System.out.println("txtName is null");
+        }
     }
 }

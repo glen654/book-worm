@@ -12,4 +12,5 @@ public interface UserBo extends SuperBo {
     UserDto userSignIn(String username, String password);
     boolean updateUser(UserDto dto) throws SQLException;
     UserDto getUserId(String username) throws SQLException;
+    String getUserCount() throws SQLException;
 }

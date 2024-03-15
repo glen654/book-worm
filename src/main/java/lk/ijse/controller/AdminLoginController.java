@@ -31,6 +31,7 @@ public class AdminLoginController {
     @FXML
     private TextField txtUsername;
     AdminBo adminBo = (AdminBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.ADMIN);
+    MainAdminController mainAdminController = new MainAdminController();
     @FXML
     void btnSignInOnAction(ActionEvent event) {
         if(validateAdmin()){
@@ -43,6 +44,7 @@ public class AdminLoginController {
                     clearFields();
                     new Alert(Alert.AlertType.CONFIRMATION,"Welcome Admin").show();
                     openWindow();
+                    mainAdminController.setUserName(userName);
                 } catch (IOException e) {
                     clearFields();
                     new Alert(Alert.AlertType.ERROR,"Username or Password Incorrect").show();

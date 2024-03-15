@@ -82,4 +82,8 @@ public class MainUserController {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Book Worm");
     }
+
+    public void setUserName(String userName) {
+        this.txtName.setText(userName);
+    }
 }

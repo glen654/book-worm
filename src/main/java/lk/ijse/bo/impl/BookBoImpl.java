@@ -4,7 +4,10 @@ import lk.ijse.bo.custom.BookBo;
 import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.custom.BookDao;
 import lk.ijse.dto.BookDto;
+import lk.ijse.dto.BorrowedBooksDto;
 import lk.ijse.entity.Book;
+import lk.ijse.entity.BorrowedBooks;
+import lk.ijse.entity.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -67,5 +70,26 @@ public class BookBoImpl implements BookBo {
     @Override
     public boolean updateBookStatus(BookDto dto) throws SQLException {
         return bookDao.updateStatus(new Book(dto.getStatus()));
+    }
+
+    @Override
+    public BookDto getBookWithBorrowedBooks(String bookId) {
+        return null;
+    }
+
+
+    private BookDto convertToBookDto(Book book) {
+        if(book == null){
+            return null;
+        }
+
+        BookDto bookDto = new BookDto();
+        bookDto.setbId(book.getbId());
+        bookDto.setTitle(book.getTitle());
+        bookDto.setAuthor(book.getAuthor());
+        bookDto.setGenre(book.getGenre());
+        bookDto.setStatus(book.getStatus());
+
+        return bookDto;
     }
 }
