@@ -2,10 +2,12 @@ package lk.ijse.bo.custom;
 
 import lk.ijse.bo.SuperBo;
 import lk.ijse.dto.AdminDto;
+import lk.ijse.dto.BookDto;
 import lk.ijse.dto.BranchDto;
 import lk.ijse.dto.UserDto;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface UserBo extends SuperBo {
     boolean saveUser(UserDto dto) throws SQLException;
@@ -13,4 +15,5 @@ public interface UserBo extends SuperBo {
     boolean updateUser(UserDto dto) throws SQLException;
     UserDto getUserId(String username) throws SQLException;
     String getUserCount() throws SQLException;
+    List<UserDto> getAllUser();
 }

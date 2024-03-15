@@ -4,11 +4,15 @@ import lk.ijse.bo.custom.UserBo;
 import lk.ijse.dao.DaoFactory;
 import lk.ijse.dao.custom.UserDao;
 import lk.ijse.dto.AdminDto;
+import lk.ijse.dto.BookDto;
 import lk.ijse.dto.UserDto;
 import lk.ijse.entity.Admin;
+import lk.ijse.entity.Book;
 import lk.ijse.entity.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserBoImpl implements UserBo {
     UserDao userDao = (UserDao) DaoFactory.getDaoFactory().getDao(DaoFactory.DaoTypes.USER);
@@ -47,5 +51,15 @@ public class UserBoImpl implements UserBo {
     @Override
     public String getUserCount() throws SQLException {
         return userDao.getCount();
+    }
+
+    @Override
+    public List<UserDto> getAllUser() {
+        List<User> users = userDao.getAll();
+        List<UserDto> userDtos = new ArrayList<>();
+        for(User user : users){
+            userDtos.add(new UserDto(user.getuId(),user.getUserName(),user.getPassword(),user.getConfirmPassword()));
+        }
+        return userDtos;
     }
 }

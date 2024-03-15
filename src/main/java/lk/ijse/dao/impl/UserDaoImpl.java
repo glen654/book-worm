@@ -25,7 +25,19 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAll() {
-        return null;
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Query query = session.createQuery("from user ");
+            return (List<User>) query.list();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+            return null;
+        }finally {
+            session.close();
+        }
     }
 
     @Override
