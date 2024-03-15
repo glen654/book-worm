@@ -1,9 +1,13 @@
 package lk.ijse.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -18,9 +22,13 @@ import lk.ijse.dto.tm.BorrowedBooksTm;
 import lk.ijse.entity.Book;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class BorrowedBooksController {
+public class BorrowedBooksController implements Initializable {
     @FXML
     private TableColumn<BorrowedBooksDto, Book> colBookId;
 
@@ -103,5 +111,44 @@ public class BorrowedBooksController {
         Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.setTitle("Book Worm");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    private void tableListener() {
+        tableBorrowedBooks.getSelectionModel().selectedItemProperty().addListener((observable, oldValued, newValue) -> {
+            setData(newValue);
+        });
+    }
+
+    private void setData(BorrowedBooksTm newValue) {
+    }
+
+    private void loadAllBorrowedBooks(){
+        ObservableList<BorrowedBooksTm> obList = FXCollections.observableArrayList();
+
+        List<BorrowedBooksDto> dtoList = borrowBookBo.getAllBorrowedBooks();
+
+        for(BorrowedBooksDto dto : dtoList){
+            JFXButton btnReturn = new JFXButton("Return");
+
+            btnReturn.setStyle("-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold;");
+            btnReturn.setCursor(Cursor.HAND);
+            colReturn.setStyle("-fx-alignment: CENTER;");
+            btnReturn.setMaxWidth(100.0);
+
+            obList.add(new BorrowedBooksTm(
+                    dto.getbId(),
+                    dto.getBorrowedDate(),
+                    dto.getReturnDate(),
+                    dto.getBookId(),
+                    btnReturn
+            ));
+        }
+        tableBorrowedBooks.setItems(obList);
+        tableBorrowedBooks.refresh();
     }
 }

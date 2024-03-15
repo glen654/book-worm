@@ -26,6 +26,14 @@ public class BorrowedBooksTm {
         this.uId = uId;
     }
 
+    public BorrowedBooksTm(String bId, LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, JFXButton btnReturn) {
+        this.bId = bId;
+        this.borrowedDate = borrowedDate;
+        this.returnDate = returnDate;
+        this.bookId = bookId;
+        this.btnReturn = btnReturn;
+    }
+
     public String getbId() {
         return bId;
     }
