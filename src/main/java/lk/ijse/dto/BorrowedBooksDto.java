@@ -6,7 +6,7 @@ import lk.ijse.entity.User;
 import java.time.LocalDateTime;
 
 public class BorrowedBooksDto {
-    private String bId;
+    private String gId;
     private LocalDateTime borrowedDate;
     private LocalDateTime returnDate;
     private Book bookId;
@@ -15,20 +15,20 @@ public class BorrowedBooksDto {
     public BorrowedBooksDto() {
     }
 
-    public BorrowedBooksDto(String bId, LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, User uId) {
-        this.bId = bId;
+    public BorrowedBooksDto(String gId, LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, User uId) {
+        this.gId = gId;
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
         this.bookId = bookId;
         this.uId = uId;
     }
 
-    public String getbId() {
-        return bId;
+    public String getgId() {
+        return gId;
     }
 
-    public void setbId(String bId) {
-        this.bId = bId;
+    public void setgId(String gId) {
+        this.gId = gId;
     }
 
     public LocalDateTime getBorrowedDate() {
@@ -66,7 +66,7 @@ public class BorrowedBooksDto {
     @Override
     public String toString() {
         return "BorrowedBooksDto{" +
-                "bId='" + bId + '\'' +
+                "gId='" + gId + '\'' +
                 ", borrowedDate=" + borrowedDate +
                 ", returnDate=" + returnDate +
                 ", bookId=" + bookId +

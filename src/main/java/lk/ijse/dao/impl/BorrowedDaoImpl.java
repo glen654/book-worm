@@ -28,7 +28,7 @@ public class BorrowedDaoImpl implements BorrowedBooksDao {
         Transaction transaction = session.beginTransaction();
 
         try{
-            Query query = session.createQuery("from borrowedBooks ");
+            Query query = session.createQuery("from borrowedBooks");
             return (List<BorrowedBooks>) query.list();
         }catch (Exception e){
             e.printStackTrace();

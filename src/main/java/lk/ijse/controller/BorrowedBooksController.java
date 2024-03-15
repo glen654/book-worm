@@ -39,8 +39,6 @@ public class BorrowedBooksController implements Initializable {
     @FXML
     private TableColumn<BorrowedBooksDto, LocalDateTime> colDueDate;
 
-    @FXML
-    private TableColumn<BorrowedBooksDto, String> colId;
 
     @FXML
     private TableColumn<BorrowedBooksTm, JFXButton> colReturn;
@@ -117,8 +115,8 @@ public class BorrowedBooksController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tableListener();
-        loadAllBorrowedBooks();
         setCellValueFactory();
+        loadAllBorrowedBooks();
     }
 
     private void tableListener() {
@@ -144,7 +142,6 @@ public class BorrowedBooksController implements Initializable {
             btnReturn.setMaxWidth(100.0);
 
             obList.add(new BorrowedBooksTm(
-                    dto.getbId(),
                     dto.getBorrowedDate(),
                     dto.getReturnDate(),
                     dto.getBookId(),
@@ -156,9 +153,8 @@ public class BorrowedBooksController implements Initializable {
     }
 
     private void setCellValueFactory() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("bId"));
         colBorrowedDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
-        colReturn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        colDueDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         colReturn.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("btnReturn"));
     }

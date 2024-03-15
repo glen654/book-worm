@@ -7,7 +7,7 @@ import lk.ijse.entity.User;
 import java.time.LocalDateTime;
 
 public class BorrowedBooksTm {
-    private String bId;
+    private String gId;
     private LocalDateTime borrowedDate;
     private LocalDateTime returnDate;
     private Book bookId;
@@ -18,28 +18,34 @@ public class BorrowedBooksTm {
     public BorrowedBooksTm() {
     }
 
-    public BorrowedBooksTm(String bId, LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, User uId) {
-        this.bId = bId;
+    public BorrowedBooksTm(String gId, LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, User uId) {
+        this.gId = gId;
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
         this.bookId = bookId;
         this.uId = uId;
     }
 
-    public BorrowedBooksTm(String bId, LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, JFXButton btnReturn) {
-        this.bId = bId;
+    public BorrowedBooksTm(String gId, LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, JFXButton btnReturn) {
+        this.gId = gId;
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
         this.bookId = bookId;
         this.btnReturn = btnReturn;
     }
 
-    public String getbId() {
-        return bId;
+    public BorrowedBooksTm(LocalDateTime borrowedDate, LocalDateTime returnDate, Book bookId, JFXButton btnReturn) {
+        this.borrowedDate = borrowedDate;
+        this.returnDate = returnDate;
+        this.bookId = bookId;
     }
 
-    public void setbId(String bId) {
-        this.bId = bId;
+    public String getgId() {
+        return gId;
+    }
+
+    public void setgId(String bId) {
+        this.gId = gId;
     }
 
     public LocalDateTime getBorrowedDate() {
@@ -77,7 +83,7 @@ public class BorrowedBooksTm {
     @Override
     public String toString() {
         return "BorrowedBooksTm{" +
-                "bId='" + bId + '\'' +
+                "gId='" + gId + '\'' +
                 ", borrowedDate=" + borrowedDate +
                 ", returnDate=" + returnDate +
                 ", bookId=" + bookId +
