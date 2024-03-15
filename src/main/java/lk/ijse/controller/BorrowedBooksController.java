@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.bo.BoFactory;
@@ -115,7 +116,9 @@ public class BorrowedBooksController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        tableListener();
+        loadAllBorrowedBooks();
+        setCellValueFactory();
     }
 
     private void tableListener() {
@@ -150,5 +153,13 @@ public class BorrowedBooksController implements Initializable {
         }
         tableBorrowedBooks.setItems(obList);
         tableBorrowedBooks.refresh();
+    }
+
+    private void setCellValueFactory() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("bId"));
+        colBorrowedDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
+        colReturn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        colReturn.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("btnReturn"));
     }
 }
