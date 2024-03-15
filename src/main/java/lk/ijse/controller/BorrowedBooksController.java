@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.BoFactory;
+import lk.ijse.bo.custom.BorrowBookBo;
 import lk.ijse.dto.BorrowedBooksDto;
 import lk.ijse.dto.tm.BorrowedBooksTm;
 import lk.ijse.entity.Book;
@@ -31,7 +34,7 @@ public class BorrowedBooksController {
     private TableColumn<BorrowedBooksDto, String> colId;
 
     @FXML
-    private TableColumn<?, ?> colReturn;
+    private TableColumn<BorrowedBooksTm, JFXButton> colReturn;
 
     @FXML
     private AnchorPane root;
@@ -44,6 +47,8 @@ public class BorrowedBooksController {
 
     @FXML
     private AnchorPane rootNode;
+
+    BorrowBookBo borrowBookBo = (BorrowBookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BORROWEDBOOK);
 
     @FXML
     void btnBooksOnAction(ActionEvent event) throws IOException {

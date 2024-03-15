@@ -1,5 +1,6 @@
 package lk.ijse.dto.tm;
 
+import com.jfoenix.controls.JFXButton;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.User;
 
@@ -11,6 +12,8 @@ public class BorrowedBooksTm {
     private LocalDateTime returnDate;
     private Book bookId;
     private User uId;
+
+    private JFXButton btnReturn;
 
     public BorrowedBooksTm() {
     }
