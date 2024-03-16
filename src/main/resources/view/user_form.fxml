@@ -117,7 +117,7 @@
                   <Font name="Ubuntu Mono Bold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="txtName" layoutX="579.0" layoutY="48.0" prefHeight="27.0" prefWidth="167.0">
+            <Label layoutX="579.0" layoutY="48.0" prefHeight="27.0" prefWidth="167.0" text="Glenalloy">
                <font>
                   <Font name="Ubuntu Mono Bold" size="14.0" />
                </font>

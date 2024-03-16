@@ -56,6 +56,19 @@ public class BorrowedDaoImpl implements BorrowedBooksDao {
 
     @Override
     public String getCount() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Long count = (Long) session.createQuery("select count (*) from borrowedBooks ").getSingleResult();
+            transaction.commit();
+            return String.valueOf(count);
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }finally {
+            session.close();
+        }
         return null;
     }
 

@@ -79,4 +79,9 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
         }
         return borrowedBooksDtos;
     }
+
+    @Override
+    public String getBorrowedCount() throws SQLException {
+        return borrowedBooksDao.getCount();
+    }
 }

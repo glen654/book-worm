@@ -156,6 +156,6 @@ public class BorrowedBooksController implements Initializable {
         colBorrowedDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-        colReturn.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("btnReturn"));
+        /*colReturn.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("btnReturn"));*/
     }
 }

@@ -3,15 +3,21 @@ package lk.ijse.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.BoFactory;
+import lk.ijse.bo.custom.BorrowBookBo;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class MainUserController {
+public class MainUserController implements Initializable {
     @FXML
     private AnchorPane root;
 
@@ -26,6 +32,8 @@ public class MainUserController {
 
     @FXML
     private Label txtName;
+
+    BorrowBookBo borrowBookBo = (BorrowBookBo) BoFactory.getBOFactory().getBo(BoFactory.BoTypes.BORROWEDBOOK);
 
     @FXML
     void btnBooksOnAction(ActionEvent event) throws IOException {
@@ -85,5 +93,33 @@ public class MainUserController {
 
     public void setUserName(String userName) {
         this.txtName.setText(userName);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setTxtBorrowedBooks(txtBorrowedBooks);
+        setTxtDueBooks(txtDueBooks);
+    }
+
+    private void setTxtDueBooks(Label txtDueBooks) {
+        String borrowCount = String.valueOf(0);
+
+        try {
+            borrowCount = borrowBookBo.getBorrowedCount();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        txtBorrowedBooks.setText(borrowCount);
+    }
+
+    private void setTxtBorrowedBooks(Label txtBorrowedBooks) {
+        String dueCount = String.valueOf(0);
+
+        try {
+            dueCount = borrowBookBo.getBorrowedCount();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        txtDueBooks.setText(dueCount);
     }
 }

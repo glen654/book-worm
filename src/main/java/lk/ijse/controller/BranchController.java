@@ -86,8 +86,14 @@ public class BranchController implements Initializable {
     }
 
     @FXML
-    void btnBranchesOnAction(ActionEvent event) {
+    void btnBranchesOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/branch_form.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
 
     @FXML
@@ -197,8 +203,14 @@ public class BranchController implements Initializable {
     }
 
     @FXML
-    void btnUsersOnAction(ActionEvent event) {
+    void btnUsersOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/user_form.fxml"));
 
+        Scene scene = new Scene(root);
+
+        Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Book Worm");
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -312,4 +324,5 @@ public class BranchController implements Initializable {
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colAdminId.setCellValueFactory(new PropertyValueFactory<>("adminId"));
     }
+
 }

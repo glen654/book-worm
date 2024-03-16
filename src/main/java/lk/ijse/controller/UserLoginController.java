@@ -45,7 +45,7 @@ public class UserLoginController {
                     clearFields();
                     openWindow();
                     new Alert(Alert.AlertType.CONFIRMATION,"Welcome User").show();
-                    mainUserController.setUserName(userDto.getUserName());
+                  /*  mainUserController.setUserName(userDto.getUserName());*/
                 }catch (Exception e){
                     clearFields();
                     new Alert(Alert.AlertType.ERROR,"Login Failed").show();

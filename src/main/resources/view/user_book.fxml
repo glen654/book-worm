@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="rootNode" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserBookController">
    <children>
       <AnchorPane fx:id="root" layoutX="238.0" layoutY="17.0" prefHeight="668.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px;">
@@ -24,7 +23,7 @@
                   <Font name="Ubuntu Mono Bold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="txtName" layoutX="579.0" layoutY="48.0" prefHeight="27.0" prefWidth="167.0">
+            <Label fx:id="txtName" layoutX="579.0" layoutY="48.0" prefHeight="27.0" prefWidth="167.0" text="Glenalloy">
                <font>
                   <Font name="Ubuntu Mono Bold" size="14.0" />
                </font>

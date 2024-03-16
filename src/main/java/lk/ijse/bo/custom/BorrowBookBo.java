@@ -13,4 +13,5 @@ import java.util.List;
 public interface BorrowBookBo extends SuperBo {
     boolean placeBorrow(User user, BookDto book) throws SQLException;
     List<BorrowedBooksDto> getAllBorrowedBooks();
+    String getBorrowedCount() throws SQLException;
 }

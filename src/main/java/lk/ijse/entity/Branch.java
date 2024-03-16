@@ -8,8 +8,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "branches")
 public class Branch {
     @Id
-    @GeneratedValue(generator = "Branch-Id-Generator")
-    @GenericGenerator(name = "Branch-Id-Generator", strategy = "lk.ijse.util.BranchIdGenerator")
     private String bId;
     private String address;
     private String bNumber;
