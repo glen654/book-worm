@@ -84,4 +84,15 @@ public class BorrowedBookBoImpl implements BorrowBookBo {
     public String getBorrowedCount() throws SQLException {
         return borrowedBooksDao.getCount();
     }
+
+    @Override
+    public List<BorrowedBooksDto> getBorrowedBooksByUserId(String userId) {
+        List<BorrowedBooks> borrowedBooks = borrowedBooksDao.getBorrowedBooks(userId);
+        List<BorrowedBooksDto> borrowedBooksDtos = new ArrayList<>();
+        for(BorrowedBooks books : borrowedBooks){
+            borrowedBooksDtos.add(new BorrowedBooksDto(books.getBorrowedDate(),books.getReturnDate(),books.getBook()));
+        }
+        return borrowedBooksDtos;
+    }
+
 }

@@ -76,4 +76,19 @@ public class BorrowedDaoImpl implements BorrowedBooksDao {
     public BorrowedBooks search(String title) {
         return null;
     }
+
+    @Override
+    public List<BorrowedBooks> getBorrowedBooks(String userId) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("from borrowedBooks b where b.user.uId = :userId");
+        query.setParameter("userId",userId);
+        List<BorrowedBooks> borrowedBooks = query.getResultList();
+
+        transaction.commit();
+        session.close();
+
+        return borrowedBooks;
+    }
 }

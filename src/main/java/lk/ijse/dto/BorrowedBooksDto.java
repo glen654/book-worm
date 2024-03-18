@@ -23,6 +23,13 @@ public class BorrowedBooksDto {
         this.uId = uId;
     }
 
+    public BorrowedBooksDto(LocalDateTime borrowedDate, LocalDateTime returnDate, Book book) {
+        this.borrowedDate = borrowedDate;
+        this.returnDate = returnDate;
+        this.bookId = book;
+    }
+
+
     public String getgId() {
         return gId;
     }

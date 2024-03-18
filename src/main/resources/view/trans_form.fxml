@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="rootNode" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.TransactionForm">
+   <children>
+      <Label layoutX="14.0" layoutY="20.0" prefHeight="63.0" prefWidth="321.0" text="Transaction">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="143.0" prefHeight="33.0" prefWidth="136.0" text="BorrowedDate:">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="217.0" prefHeight="33.0" prefWidth="136.0" text="DueDate:">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="309.0" prefHeight="33.0" prefWidth="136.0" text="Book ID:">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblBorrowDate" layoutX="153.0" layoutY="138.0" prefHeight="43.0" prefWidth="244.0">
+         <font>
+            <Font name="Ubuntu Mono Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDueDate" layoutX="115.0" layoutY="212.0" prefHeight="43.0" prefWidth="244.0">
+         <font>
+            <Font name="Ubuntu Mono Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblBookId" layoutX="107.0" layoutY="304.0" prefHeight="43.0" prefWidth="244.0">
+         <font>
+            <Font name="Ubuntu Mono Bold" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="365.0" layoutY="282.0">
+         <image>
+            <Image url="@../assets/vecteezy_bookworm-vector_266909-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

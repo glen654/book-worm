@@ -11,6 +11,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -75,7 +76,6 @@ public class UserFormController implements Initializable {
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard.fxml"));
-
         Scene scene = new Scene(root);
 
         Stage primaryStage =(Stage) this.rootNode.getScene().getWindow();
@@ -110,6 +110,60 @@ public class UserFormController implements Initializable {
         tableListener();
         loadAllUsers();
         setCellValueFactory();
+
+        colTransaction.setCellFactory(column -> {
+            return new TableCell<UserTm, JFXButton>() {
+                final JFXButton transButton = new JFXButton("Transaction");
+
+                {
+                    transButton.setOnAction(event -> {
+                        UserTm user = getTableView().getItems().get(getIndex());
+                        openTransactionForm(user);
+                    });
+                }
+
+                @Override
+                protected void updateItem(JFXButton item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (empty || item == null) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(transButton);
+                        setStyles(transButton);
+                    }
+                }
+
+
+            };
+        });
+
+    }
+
+    private void setStyles(JFXButton transButton) {
+        String buttonStyle = "-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;";
+        buttonStyle += "-fx-cursor: hand;";
+        buttonStyle += "-fx-alignment: center;";
+        buttonStyle += "-fx-max-width: 120.0;";
+        transButton.setStyle(buttonStyle);
+    }
+
+    private void openTransactionForm(UserTm user) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/trans_form.fxml"));
+            Parent rootNode = loader.load();
+
+            TransactionForm transactionForm = loader.getController();
+            transactionForm.setTransData(user);
+
+            Scene scene = new Scene(rootNode);
+            Stage stage = new Stage();
+            stage.setTitle("Book Worm");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -125,7 +179,7 @@ public class UserFormController implements Initializable {
         for(UserDto dto : dtoList){
             JFXButton btnTransactions = new JFXButton("Transactions");
 
-            btnTransactions.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;");
+            btnTransactions.setStyle("-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;");
             btnTransactions.setCursor(Cursor.HAND);
             colTransaction.setStyle("-fx-alignment: CENTER;");
             btnTransactions.setMaxWidth(120.0);
